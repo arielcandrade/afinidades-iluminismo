@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta
+      name="description"
+      content="Questionário de afinidade com cinco correntes do Iluminismo, medida em nove eixos a partir de situações do dia a dia."
+    >
+    <title>Afinidades com o Iluminismo</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/namespace.js"></script>
+    <script defer src="js/data/axes.js"></script>
+    <script defer src="js/data/profiles.js"></script>
+    <script defer src="js/data/items.js"></script>
+    <script defer src="js/scoring.js"></script>
+    <script defer src="js/storage.js"></script>
+    <script defer src="js/app.js"></script>
+  </head>
+  <body data-screen="intro">
+    <a class="skip-link" href="#app">Ir para o conteúdo</a>
+
+    <header class="masthead">
+      <a class="brand" id="brand-reset" href="#" aria-label="Voltar à capa e apagar a sessão">
+        <span class="brand-title">Afinidades com o Iluminismo</span>
+        <span class="brand-sub">um questionário em situações · edição em eixos</span>
+      </a>
+      <div
+        class="progress-rule"
+        id="progress-rule"
+        role="progressbar"
+        aria-label="Progresso do questionário"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        hidden
+      >
+        <span class="progress-fill" id="progress-fill"></span>
+      </div>
+    </header>
+
+    <main id="app" class="page" tabindex="-1">
+      <noscript>
+        <section class="screen">
+          <h1 class="display">JavaScript necessário</h1>
+          <p class="lead">Este questionário calcula o resultado no seu próprio aparelho e precisa de JavaScript habilitado.</p>
+        </section>
+      </noscript>
+    </main>
+
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <footer class="colophon">
+      <p>Nenhuma resposta é enviada. Todo o cálculo acontece neste aparelho.</p>
+    </footer>
+  </body>
+</html>

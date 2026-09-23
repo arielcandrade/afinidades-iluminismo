@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Testes de pontuação</title>
+    <style>
+      body {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font: 16px/1.5 system-ui, sans-serif;
+      }
+      .pass { color: #17633a; }
+      .fail { color: #a22620; font-weight: 700; }
+      li { margin-block: 6px; }
+    </style>
+    <script defer src="../js/namespace.js"></script>
+    <script defer src="../js/data/profiles.js"></script>
+    <script defer src="../js/data/items.js"></script>
+    <script defer src="../js/scoring.js"></script>
+    <script defer src="scoring.test.js"></script>
+  </head>
+  <body>
+    <h1>Testes de pontuação</h1>
+    <ol id="results"></ol>
+    <p id="summary"></p>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        var list = document.getElementById("results");
+        var logger = {
+          log: function (message) {
+            if (/testes passaram/.test(message)) {
+              document.getElementById("summary").textContent = message;
+              return;
+            }
+            var item = document.createElement("li");
+            item.className = "pass";
+            item.textContent = message;
+            list.appendChild(item);
+          },
+          error: function (message) {
+            var item = document.createElement("li");
+            item.className = "fail";
+            item.textContent = message;
+            list.appendChild(item);
+          }
+        };
+        window.ScoringTests.run(
+          window.IdeiasIluministas.instrument,
+          window.IdeiasIluministas.profiles,
+          window.IdeiasIluministas.scoring,
+          logger
+        );
+      });
+    </script>
+  </body>
+</html>
+

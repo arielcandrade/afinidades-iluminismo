@@ -1,0 +1,3092 @@
+<!doctype html>
+<!-- Arquivo único gerado por scripts/build-standalone.js. Não edite à mão; edite os fontes e regenere. -->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta
+      name="description"
+      content="Questionário de afinidade com dez perfis históricos do Iluminismo, a partir de situações do dia a dia."
+    >
+    <title>Afinidades com o Iluminismo</title>
+    <style>
+/* Sistema visual editorial: tinta sobre papel, serifa forte, um elemento gráfico por tela. */
+
+:root {
+  color-scheme: light dark;
+
+  --paper: #f6f1e7;
+  --paper-deep: #ece5d6;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4640;
+  --ink-faint: #8a847a;
+  --accent: #7a2e2e;
+  --accent-soft: #a25252;
+  --line: #1a1a1a;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 42rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.625rem;
+  --step-3: clamp(2rem, 1.4rem + 2.2vw, 3rem);
+  --step-4: clamp(3.5rem, 2.5rem + 5vw, 6.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1c1b19;
+    --paper-deep: #26241f;
+    --ink: #ece6d9;
+    --ink-soft: #c4bcad;
+    --ink-faint: #8a8377;
+    --accent: #c9706a;
+    --accent-soft: #a85a55;
+    --line: #ece6d9;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.display,
+.counter,
+.brand-title,
+.pole-number,
+.profile-rank,
+.profile-score,
+.bar-score {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-variant-numeric: oldstyle-nums;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- utilitários ---------- */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--ink);
+  color: var(--paper);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Filete duplo: regra tipográfica (grossa sobre fina). */
+.rule {
+  border: 0;
+  height: 0;
+  margin: 1.25rem 0 1.5rem;
+  border-top: 2px solid var(--line);
+  position: relative;
+}
+
+.rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  border-top: 1px solid var(--line);
+}
+
+[data-focus-target]:focus {
+  outline: none;
+}
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--accent);
+}
+
+/* ---------- cabeçalho ---------- */
+
+.masthead {
+  padding: 1rem var(--gutter) 0;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 0.6rem;
+}
+
+.brand-title {
+  font-size: var(--step-1);
+  letter-spacing: 0.01em;
+}
+
+.brand-sub {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.progress-rule {
+  height: 2px;
+  background: color-mix(in srgb, var(--line) 22%, transparent);
+  position: relative;
+}
+
+@supports not (background: color-mix(in srgb, red 50%, transparent)) {
+  .progress-rule {
+    background: var(--paper-deep);
+  }
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+
+.progress-rule[hidden] {
+  display: none;
+}
+
+/* ---------- página ---------- */
+
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vh, 3.5rem) var(--gutter) 3rem;
+}
+
+.page:focus {
+  outline: none;
+}
+
+.screen.is-entering {
+  animation: fade-in 0.28s ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.display {
+  margin: 0;
+  font-size: var(--step-3);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.display-small {
+  font-size: var(--step-2);
+}
+
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.fine-print {
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  margin-top: 1.25rem;
+}
+
+.footnote {
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--ink-faint);
+  padding-top: 0.75rem;
+  margin-top: 2rem;
+}
+
+.error-note {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.75rem;
+  margin: 1rem 0;
+}
+
+.error-note:focus {
+  outline: none;
+}
+
+/* ---------- botões ---------- */
+
+.button {
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.7rem 1.35rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 0;
+  letter-spacing: 0.01em;
+}
+
+.button-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.button-ink:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button-quiet:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+.link-button {
+  font: inherit;
+  font-size: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-faint);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.link-button[aria-pressed="true"] {
+  color: var(--accent);
+}
+
+.link-button:disabled {
+  text-decoration: none;
+  cursor: default;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--ink-faint);
+}
+
+.actions-result {
+  justify-content: flex-start;
+}
+
+/* ---------- capa ---------- */
+
+.intro-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.field-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1 1 14rem;
+}
+
+.field-inline label {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.field-inline input {
+  font: inherit;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 0;
+}
+
+.field-inline input::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.field-inline input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- cenário ---------- */
+
+.counter {
+  margin: 0 0 0.5rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.counter-current {
+  font-size: var(--step-4);
+  letter-spacing: -0.03em;
+}
+
+.counter-total {
+  font-size: var(--step-1);
+  color: var(--ink-faint);
+}
+
+.counter-small .counter-current {
+  font-size: var(--step-2);
+  font-style: italic;
+}
+
+.situation {
+  margin: 1.5rem 0 0;
+  font-size: var(--step-2);
+  line-height: 1.3;
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+.situation:focus {
+  outline: none;
+}
+
+.instruction {
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.25rem;
+}
+
+.reactions {
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .reactions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.reaction {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.reaction-main {
+  font: inherit;
+  text-align: left;
+  padding: 1rem 1rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  line-height: 1.45;
+}
+
+.reaction-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  min-height: 1em;
+  color: var(--accent);
+}
+
+.reaction-controls {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1rem 0.85rem;
+}
+
+.chip {
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--ink-faint);
+  color: var(--ink-faint);
+  background: transparent;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.chip:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.reaction.is-closest {
+  border-color: var(--accent);
+  outline: 1.5px solid var(--accent);
+  outline-offset: -4px;
+}
+
+.reaction.is-closest .reaction-text {
+  color: var(--accent);
+}
+
+.reaction.is-closest .chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.reaction.is-farthest {
+  border-style: dashed;
+  background: var(--paper-deep);
+}
+
+.reaction.is-farthest .reaction-text {
+  color: var(--ink-faint);
+}
+
+.reaction.is-farthest .reaction-tag {
+  color: var(--ink-faint);
+}
+
+/* ---------- tensões ---------- */
+
+.tension {
+  border: 0;
+  padding: 0;
+  margin: 0 0 2.25rem;
+}
+
+.tension + .tension {
+  border-top: 1px solid var(--ink-faint);
+  padding-top: 1.75rem;
+}
+
+.poles {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 620px) {
+  .poles {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.pole {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.pole-number {
+  font-size: var(--step-3);
+  line-height: 0.9;
+  color: var(--accent);
+}
+
+.pole-text {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  line-height: 1.35;
+}
+
+.tension-scale {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.25rem;
+}
+
+.scale-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.5rem 0.15rem;
+}
+
+.scale-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.scale-mark {
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  display: block;
+  position: relative;
+}
+
+.scale-option input:checked + .scale-mark {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.scale-option input:focus-visible + .scale-mark {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.scale-text {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: var(--ink-faint);
+}
+
+.scale-option input:checked ~ .scale-text {
+  color: var(--ink);
+}
+
+@media (max-width: 480px) {
+  .scale-text {
+    font-size: 0.66rem;
+  }
+}
+
+/* ---------- resultado ---------- */
+
+.bars {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .bar-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .bar-name {
+    grid-column: 1 / -1;
+  }
+}
+
+.bar-name {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.bar-track {
+  display: block;
+  height: 0.6rem;
+  border-bottom: 1px solid var(--ink-faint);
+  position: relative;
+}
+
+.bar-fill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  background: var(--ink);
+}
+
+.bar-row:first-child .bar-fill {
+  background: var(--accent);
+}
+
+.bar-score {
+  font-size: var(--step-1);
+  min-width: 4ch;
+  text-align: right;
+}
+
+.profile-cards {
+  display: grid;
+  gap: 0;
+  border-top: 1.5px solid var(--ink);
+}
+
+.profile-card {
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.profile-card:last-child {
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.profile-summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+}
+
+.profile-summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .profile-summary {
+    grid-template-columns: auto 1fr;
+  }
+
+  .profile-score {
+    grid-column: 2;
+  }
+}
+
+.profile-rank {
+  font-size: var(--step-2);
+  color: var(--accent);
+  line-height: 1;
+}
+
+.profile-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.profile-name {
+  font-family: var(--serif);
+  font-size: var(--step-1);
+}
+
+.profile-synthesis {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.profile-score {
+  font-size: var(--step-1);
+}
+
+.profile-toggle {
+  grid-column: 2 / -1;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.profile-card[open] .profile-toggle {
+  display: none;
+}
+
+.profile-body {
+  padding: 0 0 1.5rem;
+}
+
+@media (min-width: 620px) {
+  .profile-body {
+    padding-left: calc(var(--step-2) + 1rem);
+  }
+}
+
+.profile-period {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.idea-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.idea-list li::before {
+  content: "—";
+  margin-right: 0.4rem;
+  color: var(--accent);
+}
+
+.how-to {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.how-to summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: var(--step-1);
+  padding: 0.5rem 0;
+}
+
+.how-to p {
+  margin-top: 0.75rem;
+}
+
+/* ---------- rodapé ---------- */
+
+.colophon {
+  padding: 1.5rem var(--gutter);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+.colophon p {
+  margin: 0;
+}
+
+/* ---------- movimento reduzido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .screen.is-entering {
+    animation: none;
+  }
+
+  .progress-fill,
+  .reaction {
+    transition: none;
+  }
+}
+
+/* ---------- impressão ---------- */
+
+@media print {
+  :root {
+    --paper: #fff;
+    --paper-deep: #f2f2f2;
+    --ink: #000;
+    --ink-soft: #222;
+    --ink-faint: #555;
+    --accent: #7a2e2e;
+    --line: #000;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .masthead .progress-rule,
+  .skip-link,
+  .actions,
+  .fine-print,
+  .link-button,
+  .colophon,
+  .profile-toggle {
+    display: none !important;
+  }
+
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .profile-card,
+  .how-to {
+    break-inside: avoid;
+  }
+
+  .bar-fill {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+    </style>
+  </head>
+  <body data-screen="intro">
+    <a class="skip-link" href="#app">Ir para o conteúdo</a>
+
+    <header class="masthead">
+      <a class="brand" id="brand-reset" href="#" aria-label="Voltar à capa e apagar a sessão">
+        <span class="brand-title">Afinidades com o Iluminismo</span>
+        <span class="brand-sub">um questionário em situações</span>
+      </a>
+      <div
+        class="progress-rule"
+        id="progress-rule"
+        role="progressbar"
+        aria-label="Progresso do questionário"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        hidden
+      >
+        <span class="progress-fill" id="progress-fill"></span>
+      </div>
+    </header>
+
+    <main id="app" class="page" tabindex="-1">
+      <noscript>
+        <section class="screen">
+          <h1 class="display">JavaScript necessário</h1>
+          <p class="lead">Este questionário calcula o resultado no seu próprio aparelho e precisa de JavaScript habilitado.</p>
+        </section>
+      </noscript>
+    </main>
+
+    <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <footer class="colophon">
+      <p>Nenhuma resposta é enviada. Todo o cálculo acontece neste aparelho.</p>
+    </footer>
+      <script>
+/* js/namespace.js */
+(function (root) {
+  "use strict";
+
+  root.IdeiasIluministas = root.IdeiasIluministas || {};
+})(typeof globalThis !== "undefined" ? globalThis : this);
+
+
+    </script>
+    <script>
+/* js/data/profiles.js */
+(function (root, factory) {
+  "use strict";
+
+  var profiles = factory();
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = profiles;
+  }
+
+  root.IdeiasIluministas = root.IdeiasIluministas || {};
+  root.IdeiasIluministas.profiles = profiles;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  // `synthesis`: frase curta exibida no cartão do perfil.
+  // `essence`: fragmento nominal usado na frase que combina os três perfis.
+  return [
+    {
+      id: "philosophes",
+      name: "Philosophes e Enciclopedistas",
+      shortName: "Philosophes",
+      period: "França e redes europeias, sobretudo 1715–1789",
+      synthesis: "Mudar leis e costumes expondo tudo ao exame público e ao debate.",
+      essence: "a crítica pública dos philosophes",
+      description:
+        "Este perfil transforma a razão em crítica pública. Leis, costumes e autoridades devem ser expostos ao exame de todos, e a opinião informada é o motor da mudança. Valoriza a circulação ampla do conhecimento, a tolerância e a redução do poder coercitivo das igrejas, mas raramente propõe romper com tudo: prefere convencer, satirizar e pressionar governantes a derrubá-los. A proximidade sugere gosto por debate aberto, imprensa livre e reforma pela persuasão, sem implicar concordância com cada autor do círculo.",
+      ideas: [
+        "Razão crítica e opinião pública",
+        "Tolerância e liberdade de expressão",
+        "Difusão do conhecimento",
+        "Reforma de leis e poderes"
+      ]
+    },
+    {
+      id: "scottish",
+      name: "Iluminismo Escocês",
+      shortName: "Escocês",
+      period: "Escócia, aproximadamente 1730–1800",
+      synthesis: "Confiar na experiência, nos hábitos e no ajuste gradual do que já funciona.",
+      essence: "o gradualismo empírico escocês",
+      description:
+        "Este perfil parte da experiência, não de princípios abstratos. Hábitos, comércio e milhares de decisões individuais produzem ordens que ninguém planejou, e por isso reformas devem observar antes de intervir e ajustar aos poucos. Desconfia de projetos que pretendem reconstruir a sociedade de uma vez; prefere testar, comparar e conservar o que provou funcionar. Reconhece que mercados e divisão do trabalho geram prosperidade, mas também registra seus custos. A proximidade indica gradualismo e confiança moderada em processos espontâneos, não defesa de um mercado sem regras.",
+      ideas: [
+        "Experiência e natureza humana",
+        "Sentimento moral e simpatia",
+        "Ordem espontânea",
+        "Reforma gradual"
+      ]
+    },
+    {
+      id: "aufklarung",
+      name: "Aufklärung",
+      shortName: "Aufklärung",
+      period: "Territórios germânicos, aproximadamente 1720–1800",
+      synthesis: "Pensar por conta própria e agir por princípios que valeriam para qualquer pessoa.",
+      essence: "a autonomia de princípios da Aufklärung",
+      description:
+        "Este perfil entende o esclarecimento como autonomia intelectual e formação do caráter. Agir bem não é só produzir bons resultados nem seguir sentimentos: é adotar princípios que qualquer pessoa razoável poderia aceitar e assumir a responsabilidade pelo que se decide. Educação, dever e coerência ocupam o centro, assim como a liberdade pública de argumentar dentro de instituições estáveis. A proximidade sugere valorização de fundamentos, maturidade de julgamento e regras universalizáveis, mais do que adesão a uma política específica.",
+      ideas: [
+        "Autonomia da razão",
+        "Dever e princípios morais",
+        "Educação e formação",
+        "Liberdade pública de pensar"
+      ]
+    },
+    {
+      id: "italian",
+      name: "Iluminismo Italiano",
+      shortName: "Italiano",
+      period: "Milão, Nápoles, Toscana e outros centros, 1720–1790",
+      synthesis: "Regras escritas, penas proporcionais e instituições que se possam verificar.",
+      essence: "o pragmatismo institucional italiano",
+      description:
+        "Este perfil aplica as luzes ao direito, à economia civil e à administração. Sua marca é a defesa de leis públicas e proporcionais, da limitação do arbítrio de quem julga ou governa e da confiança recíproca como base da prosperidade. Em vez de perguntar apenas o que é verdadeiro, pergunta como tribunais, impostos e serviços podem funcionar melhor para a felicidade pública. Colaborou com governos reformadores sem lhes conceder poder ilimitado. A proximidade sugere preferência por legalidade, transparência e reformas cujos efeitos possam ser verificados.",
+      ideas: [
+        "Legalidade e proporcionalidade",
+        "Humanização das penas",
+        "Felicidade pública",
+        "Economia civil e confiança"
+      ]
+    },
+    {
+      id: "american",
+      name: "Iluminismo Americano",
+      shortName: "Americano",
+      period: "América britânica e Estados Unidos, 1740–1800",
+      synthesis: "Direitos que limitam qualquer maioria e poder dividido para conter abusos.",
+      essence: "o constitucionalismo de direitos americano",
+      description:
+        "Este perfil traduz direitos em instituições. Governos legítimos dependem do consentimento; certos direitos valem contra qualquer maioria; e o poder deve ser dividido e fiscalizado para conter abusos. Regras escritas, representação, tribunais independentes e liberdade religiosa aparecem como respostas realistas a interesses e facções. A corrente histórica carregou contradições profundas, como a escravidão, e a proximidade não implica aprová-las. Indica, sim, preferência por participação mediada por regras, garantias individuais e freios institucionais.",
+      ideas: [
+        "Consentimento dos governados",
+        "Direitos anteriores ao Estado",
+        "Freios constitucionais",
+        "Liberdade religiosa"
+      ]
+    },
+    {
+      id: "iberian",
+      name: "Iluminismo Ibérico e Ibero-americano",
+      shortName: "Ibérico",
+      period: "Espanha, Portugal e Américas ibéricas, 1720–1820",
+      synthesis: "Modernizar pelo alto com escolas, ciência útil e religião reformada.",
+      essence: "o reformismo modernizador ibérico",
+      description:
+        "Este perfil combina modernização conduzida pelo Estado, ciência útil e religião depurada. Diante do diagnóstico de atraso, aposta em ensino renovado, formação técnica, fomento à produção e controle público de privilégios, inclusive eclesiásticos. A religião não precisa desaparecer: deve servir ao interesse público e livrar-se do que atrasa. Nas Américas, a mesma linguagem de utilidade passou a sustentar críticas aos monopólios. A proximidade sugere confiança em educação, planejamento público e regeneração gradual, com atenção à cultura local.",
+      ideas: [
+        "Ciência e educação úteis",
+        "Catolicismo reformado",
+        "Fomento econômico estatal",
+        "Modernização administrativa"
+      ]
+    },
+    {
+      id: "radical",
+      name: "Iluminismo Radical",
+      shortName: "Radical",
+      period: "Redes europeias, do fim do século XVII à Revolução Francesa",
+      synthesis: "Igualdade sem privilégios, decisão pela maioria e explicação natural do mundo.",
+      essence: "o igualitarismo radical",
+      description:
+        "Este perfil leva a crítica racional às últimas consequências: explicações naturais bastam para entender o mundo, a moral não depende de revelação, e hierarquias sociais ou políticas não têm fundamento sagrado. Por isso, reformas parciais parecem insuficientes diante de instituições que preservam privilégios; a vontade popular deve ter a última palavra. A categoria é debatida entre historiadores e reúne autores que divergiam entre si. A proximidade indica afinidade com igualdade, soberania popular e crítica religiosa ampla, não adesão a um programa único.",
+      ideas: [
+        "Naturalismo e crítica religiosa",
+        "Igualdade civil ampliada",
+        "Soberania popular",
+        "Liberdade de pensamento abrangente"
+      ]
+    },
+    {
+      id: "moderate",
+      name: "Iluminismo Moderado e Religioso",
+      shortName: "Moderado/Religioso",
+      period: "Europa e Atlântico, do fim do século XVII ao XVIII",
+      synthesis: "Razão e fé lado a lado, com mudanças que preservem os laços da comunidade.",
+      essence: "a conciliação moderada entre razão e fé",
+      description:
+        "Este perfil busca conciliar ciência, razão e uma ordem transcendente. A religião deve tornar-se mais racional e tolerante, mas continua oferecendo linguagem moral, sentido e continuidade. Reformas são graduais, conduzidas por educação e melhoria dos costumes, evitando rupturas que destruam vínculos úteis. A categoria abriga deístas, protestantes, católicos e judeus com diferenças profundas e funciona aqui como um denominador comum. A proximidade sugere que progresso e crença podem cooperar e que tolerância não exige retirar toda religião da vida pública.",
+      ideas: [
+        "Compatibilidade entre razão e fé",
+        "Religião racional e tolerante",
+        "Continuidade social",
+        "Reforma moral gradual"
+      ]
+    },
+    {
+      id: "despotism",
+      name: "Despotismo Esclarecido",
+      shortName: "Despotismo Esclarecido",
+      period: "Estados europeus, principalmente 1740–1790",
+      synthesis: "Reforma decidida por quem sabe e executada de cima, sem esperar consulta.",
+      essence: "a reforma centralizada do despotismo esclarecido",
+      description:
+        "Este perfil confia na reforma racional conduzida por um poder central forte. Governantes e administradores especializados podem uniformizar leis, impostos e educação, enfrentar privilégios e elevar o bem-estar sem depender de participação popular; tolerância e secularização aparecem como instrumentos de boa administração. O modelo produziu reformas reais, mas preservou censura e hierarquias, e não significa ausência de leis: muitos reformadores buscaram codificação e previsibilidade. A proximidade indica prioridade à capacidade de executar, com o risco conhecido de baixa prestação de contas.",
+      ideas: [
+        "Reforma pelo alto",
+        "Centralização administrativa",
+        "Bem-estar como dever do soberano",
+        "Tolerância por utilidade pública"
+      ]
+    },
+    {
+      id: "physiocracy",
+      name: "Fisiocracia e Economia Política",
+      shortName: "Fisiocracia",
+      period: "França e redes europeias, sobretudo 1750–1780",
+      synthesis: "Proteger a propriedade e a produção e deixar a economia seguir suas próprias leis.",
+      essence: "a confiança fisiocrática na ordem econômica",
+      description:
+        "Este perfil entende que a economia tem regularidades próprias que governos devem conhecer e respeitar. Liberdade de produção e circulação, proteção da propriedade e impostos simples são preferíveis a monopólios, corporações e controles minuciosos. Em sua forma estrita, atribui à terra e à produção primária o papel central na geração de riqueza e admite autoridade forte para proteger essa ordem. A economia política posterior reformulou parte dessas teses. A proximidade sugere confiança em regras econômicas gerais e baixa intervenção cotidiana.",
+      ideas: [
+        "Ordem econômica natural",
+        "Liberdade de produção e circulação",
+        "Primazia agrária",
+        "Tributação simples da renda da terra"
+      ]
+    }
+  ];
+});
+
+    </script>
+    <script>
+/* js/data/items.js */
+(function (root, factory) {
+  "use strict";
+
+  var instrument = factory();
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = instrument;
+  }
+
+  root.IdeiasIluministas = root.IdeiasIluministas || {};
+  root.IdeiasIluministas.instrument = instrument;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  // Cada cenário tem 4 reações, uma por perfil (+2), com um perfil secundário
+  // opcional (+1). O respondente marca a reação mais próxima e a mais distante.
+  function scenario(id, theme, situation, reactions) {
+    return {
+      id: id,
+      theme: theme,
+      situation: situation,
+      reactions: reactions.map(function (reaction, index) {
+        return {
+          id: String.fromCharCode(97 + index),
+          text: reaction[0],
+          weights: reaction[1]
+        };
+      })
+    };
+  }
+
+  function tension(id, left, right) {
+    return {
+      id: id,
+      left: { profileId: left[0], text: left[1] },
+      right: { profileId: right[0], text: right[1] }
+    };
+  }
+
+  return {
+    version: "2.0.0",
+    profileIds: [
+      "philosophes",
+      "scottish",
+      "aufklarung",
+      "italian",
+      "american",
+      "iberian",
+      "radical",
+      "moderate",
+      "despotism",
+      "physiocracy"
+    ],
+    blockWeights: {
+      scenarios: 0.8,
+      tensions: 0.2
+    },
+    tensionScale: [-2, -1, 0, 1, 2],
+    scenarios: [
+      scenario(
+        "c01",
+        "Livro polêmico na biblioteca",
+        "A biblioteca do bairro recebeu um livro que ataca duramente a religião mais seguida na cidade. Um grupo de frequentadores pede que ele seja retirado da estante. A direção pergunta sua opinião.",
+        [
+          ["Manter o livro e organizar uma roda de conversa aberta sobre ele.", { philosophes: 2 }],
+          ["Manter o livro: ninguém pode retirar uma publicação porque a maioria se ofendeu.", { american: 2 }],
+          ["Manter o livro, mas sem destaque, para não ferir a convivência do bairro.", { moderate: 2 }],
+          ["Manter o livro e revisar também o espaço dado ao material religioso.", { radical: 2 }]
+        ]
+      ),
+      scenario(
+        "c02",
+        "Verba de fomento econômico",
+        "A prefeitura recebeu um repasse único para movimentar a economia da cidade. Não há consenso sobre onde aplicar. Você foi chamado a opinar.",
+        [
+          ["Estradas e crédito para quem produz no campo; é dali que sai a riqueza.", { physiocracy: 2 }],
+          ["Uma escola técnica e apoio direto a três setores escolhidos pela prefeitura.", { iberian: 2, despotism: 1 }],
+          ["Cortar taxas e burocracia e deixar os negócios decidirem onde crescer.", { scottish: 2 }],
+          ["Um fundo administrado em conjunto por comerciantes, moradores e prefeitura.", { italian: 2 }]
+        ]
+      ),
+      scenario(
+        "c03",
+        "Reforma penal após crime violento",
+        "Um crime violento abalou a cidade. A câmara discute mudar as penas com urgência. Há várias propostas na mesa.",
+        [
+          ["Penas previstas em lei, proporcionais ao dano, iguais para qualquer acusado.", { italian: 2 }],
+          ["Antes de mudar penas, ver o que deu resultado em cidades parecidas com a nossa.", { scottish: 2 }],
+          ["Reforço ao trabalho de igrejas e comunidades na recuperação de quem errou.", { moderate: 2 }],
+          ["Nenhuma mudança apressada: garantias de defesa e julgamento valem em qualquer clima.", { american: 2 }]
+        ]
+      ),
+      scenario(
+        "c04",
+        "Feriado religioso em escola pública",
+        "Uma escola pública sempre fez uma celebração na data religiosa mais tradicional da cidade. Famílias de outras crenças pediram mudança. A direção precisa decidir.",
+        [
+          ["Manter a celebração e convidar as outras famílias a apresentarem suas tradições.", { moderate: 2 }],
+          ["Encerrar celebrações religiosas na escola; a data vira dia comum de aula.", { radical: 2 }],
+          ["Manter a celebração como parte da cultura local, com conteúdo revisado pelos professores.", { iberian: 2 }],
+          ["Deixar a participação livre e garantir por escrito que ninguém será obrigado.", { american: 2 }]
+        ]
+      ),
+      scenario(
+        "c05",
+        "Reforma de impostos sem consulta",
+        "O prefeito preparou uma reforma dos impostos municipais com uma equipe técnica. Ele quer aprovar em uma semana, sem audiências. Perguntam sua posição.",
+        [
+          ["Se a equipe fez bem o trabalho, aprovar logo; audiência só atrasa.", { despotism: 2 }],
+          ["Nenhum imposto novo sem passar pela câmara e por audiência pública.", { american: 2 }],
+          ["Aceitar apenas se simplificar as taxas e deixar de punir quem produz.", { physiocracy: 2 }],
+          ["Publicar a proposta inteira e dar prazo para que todos leiam e comentem.", { italian: 2 }]
+        ]
+      ),
+      scenario(
+        "c06",
+        "Conselho de bairro e secretaria técnica",
+        "Uma praça será reformada. A secretaria de obras já tem um projeto pronto. O conselho de moradores quer decidir o desenho em assembleia.",
+        [
+          ["Executar o projeto da secretaria; quem estudou o assunto é quem deve decidir.", { despotism: 2 }],
+          ["Expor o projeto e as alternativas em público e deixar a discussão amadurecer.", { philosophes: 2 }],
+          ["A assembleia dos moradores decide; a secretaria executa o que for votado.", { radical: 2 }],
+          ["Consultar primeiro os donos dos imóveis ao redor, que arcam com os efeitos.", { physiocracy: 2 }]
+        ]
+      ),
+      scenario(
+        "c07",
+        "Imprensa critica servidores",
+        "Um jornal local publicou uma série de reportagens criticando servidores da prefeitura pelo nome. Parte da câmara quer limitar esse tipo de publicação.",
+        [
+          ["Nada de limite; criticar quem exerce poder é justamente o papel de um jornal.", { philosophes: 2 }],
+          ["Limitar: a crítica constante trava a administração e desanima quem trabalha.", { despotism: 2 }],
+          ["Nada de limite, desde que o jornal assine, fundamente e aceite responder pelo que publica.", { aufklarung: 2 }],
+          ["Nada de limite; quem se sentir lesado recorre ao tribunal, não à câmara.", { american: 2 }]
+        ]
+      ),
+      scenario(
+        "c08",
+        "Currículo escolar",
+        "A rede municipal vai redesenhar o currículo do ensino fundamental. Há disputa sobre o que deve ter mais espaço.",
+        [
+          ["Formar pessoas capazes de pensar por conta própria e sustentar as próprias escolhas.", { aufklarung: 2 }],
+          ["Ciências, ofícios e técnicas de que a cidade precisa para se desenvolver.", { iberian: 2 }],
+          ["Convivência, hábitos e experiência prática; o resto a vida ensina aos poucos.", { scottish: 2 }],
+          ["Valores, tradição e conhecimento juntos, para formar caráter e não só cabeça.", { moderate: 2 }]
+        ]
+      ),
+      scenario(
+        "c09",
+        "Monopólio de uma associação de comerciantes",
+        "Uma associação de comerciantes controla quem pode abrir loja no centro da cidade há décadas. Novos comerciantes reclamam. A câmara discute o que fazer.",
+        [
+          ["Acabar com o controle: qualquer um abre loja onde quiser e o mercado se ajusta.", { physiocracy: 2 }],
+          ["Abrir gradualmente, observando o que acontece, sem desmontar de uma vez o que funciona.", { scottish: 2 }],
+          ["Regras públicas e iguais para todos, escritas em lei, no lugar de acordos fechados.", { italian: 2 }],
+          ["A prefeitura assume o controle e define ela mesma quem entra e quanto cobra.", { despotism: 2 }]
+        ]
+      ),
+      scenario(
+        "c10",
+        "Juiz diante de lei dura",
+        "Uma juíza deve aplicar uma lei que prevê pena pesada para um caso pequeno. A lei é clara. Ela tem alguma margem para decidir.",
+        [
+          ["Aplicar a lei como está e pedir publicamente que ela seja mudada.", { italian: 2, american: 1 }],
+          ["Julgar pelo princípio que valeria para todos os casos iguais, mesmo contrariando a letra.", { aufklarung: 2 }],
+          ["Olhar como casos parecidos foram tratados e seguir o que a prática consolidou.", { scottish: 2 }],
+          ["Aplicar a pena menor que a consciência permitir; leis servem às pessoas.", { moderate: 2 }]
+        ]
+      ),
+      scenario(
+        "c11",
+        "Sucessão em empresa familiar",
+        "O fundador de uma empresa familiar vai se aposentar. Há filhos, sócios antigos e funcionários de confiança. Ninguém sabe quem deve assumir.",
+        [
+          ["Seguir o costume da família e ajustar aos poucos, conforme a nova gestão for se provando.", { scottish: 2 }],
+          ["Escolher pelo critério que todos aceitariam de antemão, mesmo que desagrade alguém.", { aufklarung: 2 }],
+          ["Escrever antes as regras da sucessão e submeter a escolha a um conselho.", { american: 2 }],
+          ["Todos que trabalham na empresa votam, com o mesmo peso, quem assume.", { radical: 2 }]
+        ]
+      ),
+      scenario(
+        "c12",
+        "Templo de uma nova religião",
+        "Um grupo religioso recém-chegado quer construir um templo em um bairro tradicional. Vizinhos protestam. A prefeitura pede pareceres.",
+        [
+          ["Autorizar e aproveitar para debater em público o que a cidade entende por convivência.", { philosophes: 2 }],
+          ["Autorizar, com diálogo entre as lideranças religiosas para evitar rupturas no bairro.", { moderate: 2 }],
+          ["Autorizar, desde que o grupo siga as normas da cidade e não pregue contra elas.", { iberian: 2 }],
+          ["Autorizar por decisão da prefeitura; a paz entre crenças é questão de administração.", { despotism: 2, iberian: 1 }]
+        ]
+      ),
+      scenario(
+        "c13",
+        "Plebiscito ou comissão de especialistas",
+        "A cidade precisa decidir se muda o sistema de transporte. Alguns querem plebiscito; outros, uma comissão de especialistas.",
+        [
+          ["Plebiscito: quem usa o transporte decide, e a comissão obedece ao resultado.", { radical: 2 }],
+          ["Primeiro uma lei fixando como se decide; depois plebiscito ou comissão, conforme ela disser.", { italian: 2 }],
+          ["Plebiscito, mas com limites prévios: a comissão define o que pode ser votado.", { american: 2 }],
+          ["Primeiro divulgar os estudos em linguagem simples e debater; votar só depois.", { philosophes: 2 }]
+        ]
+      ),
+      scenario(
+        "c14",
+        "Costume local e regra nacional",
+        "Uma lei nacional padroniza o horário do comércio em todo o país. A cidade tem um costume antigo de fechar ao meio-dia. Pedem sua opinião.",
+        [
+          ["Manter o costume; ele funciona aqui há gerações e ninguém pediu mudança.", { scottish: 2 }],
+          ["Cumprir a regra nacional; padronizar evita confusão e faz o país andar junto.", { despotism: 2 }],
+          ["Adaptar aos poucos, com campanha explicando por que a mudança ajuda a cidade.", { iberian: 2 }],
+          ["A cidade deve poder decidir seu horário; a lei nacional foi longe demais.", { american: 2, scottish: 1 }]
+        ]
+      ),
+      scenario(
+        "c15",
+        "Fila no hospital",
+        "O hospital municipal tem fila para uma cirurgia que não é urgente. Não dá para atender todos este ano. Como ordenar a fila?",
+        [
+          ["Um critério único escrito e publicado, aplicado igualmente, com direito a recurso.", { italian: 2 }],
+          ["A ordem que qualquer pessoa aceitaria se não soubesse sua posição na fila.", { aufklarung: 2 }],
+          ["Uma equipe técnica ordena os casos pela gravidade, sem interferência externa.", { despotism: 2 }],
+          ["Sorteio entre todos os inscritos; ninguém tem mais direito do que outro.", { radical: 2 }]
+        ]
+      ),
+      scenario(
+        "c16",
+        "Cooperativa e confiança entre sócios",
+        "Uma cooperativa agrícola cresceu e alguns sócios começaram a atrasar entregas. Os fundadores discutem como manter o grupo unido.",
+        [
+          ["Regras claras de contribuição e um sistema em que quem cumpre é visto cumprindo.", { italian: 2 }],
+          ["Conversar caso a caso; a confiança se reconstrói na convivência, não em regulamento.", { scottish: 2 }],
+          ["Pagar cada sócio pelo que produz; quem entrega mais ganha mais e o resto se resolve.", { physiocracy: 2 }],
+          ["Cada sócio assume por escrito o compromisso e responde por ele diante do grupo.", { aufklarung: 2 }]
+        ]
+      ),
+      scenario(
+        "c17",
+        "Jovem contra o plano da família",
+        "Um jovem de dezenove anos quer abandonar a carreira que a família planejou e seguir outra. Os pais pedem que você converse com ele.",
+        [
+          ["Ele tem idade para decidir; deve pensar bem e assumir as consequências.", { aufklarung: 2 }],
+          ["Aconselhar respeito à família e buscar um acordo que preserve os laços.", { moderate: 2 }],
+          ["A família não tem autoridade sobre a vida dele; que siga o próprio caminho.", { radical: 2 }],
+          ["Sugerir que experimente por um tempo antes de romper; a prática vai mostrar o rumo.", { scottish: 2 }]
+        ]
+      ),
+      scenario(
+        "c18",
+        "Museu e objeto sagrado",
+        "Um museu exibe um objeto considerado sagrado por uma comunidade religiosa. A comunidade pede a devolução. O museu diz que o objeto é patrimônio de todos.",
+        [
+          ["Manter em exposição e explicar sua história com a mesma liberdade de qualquer outro objeto.", { philosophes: 2 }],
+          ["Devolver; o valor que aquele objeto tem para os fiéis vale mais que a exposição.", { moderate: 2 }],
+          ["Manter; nenhum objeto merece tratamento diferente por ser chamado de sagrado.", { radical: 2 }],
+          ["Devolver com um acordo que garanta estudo, registro e visitas do museu.", { iberian: 2 }]
+        ]
+      ),
+      scenario(
+        "c19",
+        "Código de ética em uma empresa",
+        "Uma empresa média teve casos de desvio de conduta. A diretoria quer criar um código de ética e discute em que ele deve se apoiar.",
+        [
+          ["Princípios que qualquer funcionário reconheceria como válidos, mesmo sem ninguém vigiando.", { aufklarung: 2 }],
+          ["Poucas regras e muito exemplo dos mais antigos; conduta se aprende observando.", { scottish: 2 }],
+          ["Regras escritas com consequências definidas, aplicadas do estagiário ao diretor.", { italian: 2 }],
+          ["Valores compartilhados e um espaço para a consciência de cada um, com apoio de mentores.", { moderate: 2 }]
+        ]
+      ),
+      scenario(
+        "c20",
+        "Lei ambiental e proprietários rurais",
+        "Uma nova lei ambiental limita o uso de parte das terras de pequenos e grandes proprietários rurais. Alguns ameaçam deixar de produzir.",
+        [
+          ["Rever a lei; sem quem produz na terra, não há o que preservar nem o que arrecadar.", { physiocracy: 2 }],
+          ["Aplicar, mas com indenização; o direito sobre a terra não pode ser esvaziado sem compensação.", { american: 2 }],
+          ["Divulgar os dados sobre o dano ambiental e deixar a opinião pública pressionar.", { philosophes: 2 }],
+          ["Manter a lei se ela for igual para todos, com fiscalização prevista e sem exceções.", { italian: 2 }]
+        ]
+      ),
+      scenario(
+        "c21",
+        "Ciência e religião na sala de aula",
+        "Uma escola pública recebeu pedido para tratar a origem do mundo também pela perspectiva religiosa nas aulas de ciências. Os professores estão divididos.",
+        [
+          ["Não; a aula de ciências é lugar de explicações naturais, e só delas.", { radical: 2 }],
+          ["Sim, deixando claro que fé e ciência respondem a perguntas diferentes e podem conviver.", { moderate: 2 }],
+          ["Ensinar ciência na aula de ciências e criar espaço separado para o aluno examinar crenças.", { aufklarung: 2 }],
+          ["Ensinar ciência com rigor e manter a formação religiosa como disciplina própria da escola.", { iberian: 2 }]
+        ]
+      ),
+      scenario(
+        "c22",
+        "Copiar a reforma de outro país",
+        "A prefeitura quer copiar um modelo de gestão de escolas que deu resultado em outro país. Muitos professores desconfiam.",
+        [
+          ["Adotar o modelo inteiro e logo; adaptação demais é desculpa para não mudar.", { despotism: 2 }],
+          ["Adotar só as partes cujos resultados possam ser medidos aqui, com avaliação anual.", { italian: 2 }],
+          ["Adotar com apoio de formação para os professores e metas acompanhadas pela prefeitura.", { iberian: 2 }],
+          ["Traduzir e divulgar as pesquisas para todos e debater antes de qualquer decisão.", { philosophes: 2 }]
+        ]
+      ),
+      scenario(
+        "c23",
+        "Piso salarial municipal",
+        "A câmara discute criar um piso salarial municipal acima do nacional. Empregadores dizem que vão demitir; trabalhadores dizem que não dá para viver com menos.",
+        [
+          ["Não criar; salários se ajustam pela produção, e o piso só desanima quem emprega.", { physiocracy: 2 }],
+          ["Criar, com regras públicas e avaliação periódica dos efeitos sobre emprego e renda.", { italian: 2 }],
+          ["Criar e ir além: quem vive do trabalho deve ter parte no que a empresa ganha.", { radical: 2 }],
+          ["Não criar por decreto; ver o que fizeram cidades parecidas e ajustar pela experiência.", { scottish: 2 }]
+        ]
+      ),
+      scenario(
+        "c24",
+        "Concurso ou indicação técnica",
+        "A prefeitura precisa preencher cargos de direção nas escolas. Há disputa entre fazer concurso e deixar a secretaria indicar pessoas de confiança técnica.",
+        [
+          ["Concurso com regras públicas; indicação abre espaço para favores que ninguém controla.", { american: 2 }],
+          ["Indicação pela secretaria; quem responde pelo resultado precisa escolher a própria equipe.", { despotism: 2 }],
+          ["Concurso, seguido de curso de formação obrigatório e acompanhamento da secretaria.", { iberian: 2, despotism: 1 }],
+          ["Concurso que avalie também a capacidade de julgar situações, não só o conteúdo decorado.", { aufklarung: 2 }]
+        ]
+      ),
+      scenario(
+        "c25",
+        "Fim imediato ou transição",
+        "Um movimento pede o fim imediato de uma vantagem que um grupo da cidade tem há muito tempo. Outros propõem uma transição de dez anos.",
+        [
+          ["Fim imediato; um privilégio não fica menos privilégio por ser antigo e conhecido.", { radical: 2 }],
+          ["Transição, cuidando para que a mudança não rompa os laços que sustentam a cidade.", { moderate: 2 }],
+          ["Acabar com a vantagem, mas sem tocar no que cada um já tem de propriedade.", { physiocracy: 2 }],
+          ["Expor a vantagem em público; quando todos entenderem o que ela é, ela cai sozinha.", { philosophes: 2 }]
+        ]
+      ),
+      scenario(
+        "c26",
+        "Poderes do prefeito na emergência",
+        "Uma enchente atingiu a cidade. O prefeito pede poderes para gastar e desapropriar sem passar pela câmara durante seis meses.",
+        [
+          ["Não; a câmara pode se reunir em regime de urgência e aprovar cada medida.", { american: 2 }],
+          ["Sim; em emergência, quem executa precisa decidir sem esperar votação.", { despotism: 2 }],
+          ["Sim, por prazo curto, com cada gasto publicado e revisado ao final.", { italian: 2 }],
+          ["Sim, desde que a imprensa e os moradores possam acompanhar tudo e cobrar.", { philosophes: 2 }]
+        ]
+      ),
+      scenario(
+        "c27",
+        "Dívida da prefeitura",
+        "A prefeitura acumulou uma dívida que compromete o orçamento. É preciso decidir quem vai arcar com o ajuste.",
+        [
+          ["Cortar o que não produz e cobrar mais de quem tem terra e patrimônio parados.", { physiocracy: 2 }],
+          ["Cortar aos poucos, começando pelo que a experiência mostrar que pesa menos.", { scottish: 2 }],
+          ["Nenhum ajuste sem que a câmara aprove cada item e o eleitor saiba quem pagou.", { american: 2 }],
+          ["Cortar despesas e investir o que restar em ensino e produção, para a cidade crescer.", { iberian: 2 }]
+        ]
+      ),
+      scenario(
+        "c28",
+        "Herança e desigualdade",
+        "Um vereador propõe um imposto alto sobre grandes heranças para financiar escolas. A proposta dividiu a cidade.",
+        [
+          ["Aprovar; ninguém nasce com direito a começar a vida muito acima dos outros.", { radical: 2 }],
+          ["Rejeitar; patrimônio que passa de geração em geração é o que mantém a produção.", { physiocracy: 2 }],
+          ["Aceitar só com limite fixado em lei e sujeito a contestação nos tribunais.", { american: 2 }],
+          ["Não aprovar; com o tempo, famílias e fortunas se rearranjam por conta própria.", { scottish: 2 }]
+        ]
+      )
+    ],
+    tensions: [
+      tension(
+        "t01",
+        ["iberian", "O progresso vem de escolas, ofícios e ciência aplicada, ao longo de uma geração."],
+        ["despotism", "O progresso vem de um governo que concentra as decisões e executa rápido."]
+      ),
+      tension(
+        "t02",
+        ["moderate", "A moral se sustenta na fé e nos laços da comunidade."],
+        ["aufklarung", "A moral se sustenta em princípios que cada pessoa pode examinar por si."]
+      ),
+      tension(
+        "t03",
+        ["philosophes", "Leis e costumes mudam convencendo a opinião pública, sem derrubar tudo."],
+        ["radical", "Instituições que sustentam privilégios não se reformam; substituem-se."]
+      ),
+      tension(
+        "t04",
+        ["american", "Certos direitos valem mesmo contra a vontade da maioria."],
+        ["radical", "A vontade da maioria é a última palavra sobre qualquer regra."]
+      ),
+      tension(
+        "t05",
+        ["italian", "Regras escritas que valem inclusive para quem está no governo."],
+        ["despotism", "Liberdade para quem governa agir rápido quando sabe o que faz."]
+      ),
+      tension(
+        "t06",
+        ["scottish", "A riqueza nasce da troca, do comércio e do trabalho dividido entre muitos."],
+        ["physiocracy", "A riqueza nasce da terra e do que se produz nela; o resto só a movimenta."]
+      ),
+      tension(
+        "t07",
+        ["italian", "Prosperidade depende de leis, confiança entre as pessoas e instituições que funcionem."],
+        ["physiocracy", "Prosperidade depende de deixar a produção e a circulação livres de controles."]
+      ),
+      tension(
+        "t08",
+        ["iberian", "O governo pode e deve corrigir práticas religiosas que atrasam o país."],
+        ["moderate", "A renovação da religião cabe aos fiéis, não ao governo."]
+      )
+    ]
+  };
+});
+
+    </script>
+    <script>
+/* js/scoring.js */
+(function (root, factory) {
+  "use strict";
+
+  var scoring = factory();
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = scoring;
+  }
+
+  root.IdeiasIluministas = root.IdeiasIluministas || {};
+  root.IdeiasIluministas.scoring = scoring;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  var TENSION_VALUES = [-2, -1, 0, 1, 2];
+  var CLOSE_THRESHOLD = 4;
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function numberOrZero(value) {
+    return typeof value === "number" && Number.isFinite(value) ? value : 0;
+  }
+
+  function emptyProfileMap(profileIds, initial) {
+    return profileIds.reduce(function (result, id) {
+      result[id] = initial;
+      return result;
+    }, {});
+  }
+
+  function addWeighted(target, weights, factor) {
+    Object.keys(weights || {}).forEach(function (profileId) {
+      if (Object.prototype.hasOwnProperty.call(target, profileId)) {
+        target[profileId] += numberOrZero(weights[profileId]) * factor;
+      }
+    });
+  }
+
+  function findReaction(item, id) {
+    return item.reactions.find(function (reaction) {
+      return reaction.id === id;
+    });
+  }
+
+  function isTensionValue(value) {
+    return TENSION_VALUES.indexOf(value) !== -1;
+  }
+
+  // Menor e maior contribuição possível de um cenário para um perfil,
+  // considerando qualquer par (mais próxima, mais distante) de reações distintas.
+  function scenarioRange(item, profileId) {
+    var values = item.reactions.map(function (reaction) {
+      return numberOrZero(reaction.weights[profileId]);
+    });
+    var minimum = Infinity;
+    var maximum = -Infinity;
+
+    values.forEach(function (closestValue, closestIndex) {
+      values.forEach(function (farthestValue, farthestIndex) {
+        if (closestIndex === farthestIndex) {
+          return;
+        }
+        var contribution = closestValue - farthestValue;
+        minimum = Math.min(minimum, contribution);
+        maximum = Math.max(maximum, contribution);
+      });
+    });
+
+    return {
+      min: Number.isFinite(minimum) ? minimum : 0,
+      max: Number.isFinite(maximum) ? maximum : 0
+    };
+  }
+
+  function getScenarioBounds(instrument) {
+    var min = emptyProfileMap(instrument.profileIds, 0);
+    var max = emptyProfileMap(instrument.profileIds, 0);
+
+    instrument.scenarios.forEach(function (item) {
+      instrument.profileIds.forEach(function (profileId) {
+        var range = scenarioRange(item, profileId);
+        min[profileId] += range.min;
+        max[profileId] += range.max;
+      });
+    });
+
+    return { min: min, max: max };
+  }
+
+  function getTensionBounds(instrument) {
+    var min = emptyProfileMap(instrument.profileIds, 0);
+    var max = emptyProfileMap(instrument.profileIds, 0);
+
+    instrument.tensions.forEach(function (item) {
+      [item.left.profileId, item.right.profileId].forEach(function (profileId) {
+        if (Object.prototype.hasOwnProperty.call(min, profileId)) {
+          min[profileId] -= 2;
+          max[profileId] += 2;
+        }
+      });
+    });
+
+    return { min: min, max: max };
+  }
+
+  function getBounds(instrument) {
+    return {
+      scenarios: getScenarioBounds(instrument),
+      tensions: getTensionBounds(instrument)
+    };
+  }
+
+  function scoreScenarios(instrument, answers) {
+    var totals = emptyProfileMap(instrument.profileIds, 0);
+
+    instrument.scenarios.forEach(function (item) {
+      var answer = answers[item.id] || {};
+      var closest = findReaction(item, answer.closest);
+      var farthest = findReaction(item, answer.farthest);
+
+      if (!closest || !farthest || closest.id === farthest.id) {
+        return;
+      }
+
+      addWeighted(totals, closest.weights, 1);
+      addWeighted(totals, farthest.weights, -1);
+    });
+
+    return totals;
+  }
+
+  function scoreTensions(instrument, answers) {
+    var totals = emptyProfileMap(instrument.profileIds, 0);
+
+    instrument.tensions.forEach(function (item) {
+      var value = answers[item.id];
+      if (!isTensionValue(value)) {
+        return;
+      }
+      if (Object.prototype.hasOwnProperty.call(totals, item.left.profileId)) {
+        totals[item.left.profileId] -= value;
+      }
+      if (Object.prototype.hasOwnProperty.call(totals, item.right.profileId)) {
+        totals[item.right.profileId] += value;
+      }
+    });
+
+    return totals;
+  }
+
+  function normalizeTotals(profileIds, totals, bounds) {
+    return profileIds.reduce(function (result, profileId) {
+      var minimum = bounds.min[profileId];
+      var maximum = bounds.max[profileId];
+      var range = maximum - minimum;
+
+      result[profileId] =
+        range === 0
+          ? 0.5
+          : clamp((totals[profileId] - minimum) / range, 0, 1);
+      return result;
+    }, {});
+  }
+
+  function normalizedBlocks(instrument, responses) {
+    var bounds = getBounds(instrument);
+    var safeResponses = responses || {};
+
+    return {
+      scenarios: normalizeTotals(
+        instrument.profileIds,
+        scoreScenarios(instrument, safeResponses.scenarios || {}),
+        bounds.scenarios
+      ),
+      tensions: normalizeTotals(
+        instrument.profileIds,
+        scoreTensions(instrument, safeResponses.tensions || {}),
+        bounds.tensions
+      )
+    };
+  }
+
+  function combineBlocks(instrument, blocks, omittedBlock) {
+    var weights = instrument.blockWeights;
+    var activeWeight = Object.keys(weights).reduce(function (sum, blockId) {
+      return blockId === omittedBlock ? sum : sum + weights[blockId];
+    }, 0);
+
+    return instrument.profileIds.reduce(function (result, profileId) {
+      var combined = Object.keys(weights).reduce(function (sum, blockId) {
+        if (blockId === omittedBlock) {
+          return sum;
+        }
+        return sum + blocks[blockId][profileId] * weights[blockId];
+      }, 0);
+      result[profileId] = activeWeight === 0 ? 50 : 100 * combined / activeWeight;
+      return result;
+    }, {});
+  }
+
+  function rankScores(profileIds, scores, profileNames) {
+    return profileIds
+      .map(function (profileId) {
+        var canonicalScore = Math.round(scores[profileId] * 1e9) / 1e9;
+        return {
+          id: profileId,
+          score: scores[profileId],
+          canonicalScore: canonicalScore,
+          name: profileNames && profileNames[profileId] ? profileNames[profileId] : profileId
+        };
+      })
+      .sort(function (a, b) {
+        var difference = b.canonicalScore - a.canonicalScore;
+        return Math.abs(difference) > 1e-10
+          ? difference
+          : a.name.localeCompare(b.name, "pt-BR");
+      });
+  }
+
+  function isScenarioAnswerComplete(item, answer) {
+    var safeAnswer = answer || {};
+    var closest = findReaction(item, safeAnswer.closest);
+    var farthest = findReaction(item, safeAnswer.farthest);
+    return Boolean(closest && farthest && closest.id !== farthest.id);
+  }
+
+  function validateCompleteness(instrument, responses) {
+    var missing = [];
+    var safeResponses = responses || {};
+
+    instrument.scenarios.forEach(function (item) {
+      if (!isScenarioAnswerComplete(item, (safeResponses.scenarios || {})[item.id])) {
+        missing.push(item.id);
+      }
+    });
+
+    instrument.tensions.forEach(function (item) {
+      if (!isTensionValue((safeResponses.tensions || {})[item.id])) {
+        missing.push(item.id);
+      }
+    });
+
+    return { complete: missing.length === 0, missing: missing };
+  }
+
+  // Um perfil do top 3 é "instável" quando sai do top 3 em pelo menos duas variantes
+  // (ou em todas, se houver menos de três blocos): nenhum bloco isolado o sustenta.
+  function calculateStability(instrument, blocks, fullRanking, profileNames) {
+    var blockIds = Object.keys(instrument.blockWeights);
+    var exitThreshold = Math.min(2, blockIds.length);
+    var fullTopIds = fullRanking.slice(0, 3).map(function (entry) {
+      return entry.id;
+    });
+    var exitCounts = fullTopIds.reduce(function (result, id) {
+      result[id] = 0;
+      return result;
+    }, {});
+    var variants = {};
+
+    blockIds.forEach(function (omittedBlock) {
+      var scores = combineBlocks(instrument, blocks, omittedBlock);
+      var ranking = rankScores(instrument.profileIds, scores, profileNames);
+      var topIds = ranking.slice(0, 3).map(function (entry) {
+        return entry.id;
+      });
+      variants[omittedBlock] = topIds;
+
+      fullTopIds.forEach(function (profileId) {
+        if (topIds.indexOf(profileId) === -1) {
+          exitCounts[profileId] += 1;
+        }
+      });
+    });
+
+    var unstableProfiles = fullTopIds.filter(function (profileId) {
+      return exitCounts[profileId] >= exitThreshold;
+    });
+
+    return {
+      sensitive: unstableProfiles.length > 0,
+      unstableProfiles: unstableProfiles,
+      exitCounts: exitCounts,
+      variants: variants
+    };
+  }
+
+  function findClosePairs(ranking, threshold) {
+    var limit = typeof threshold === "number" ? threshold : CLOSE_THRESHOLD;
+    var pairs = [];
+
+    ranking.slice(0, 3).forEach(function (entry, index) {
+      var nextEntry = ranking[index + 1];
+      var difference = nextEntry ? entry.canonicalScore - nextEntry.canonicalScore : Infinity;
+      if (difference > 0 && difference < limit) {
+        pairs.push([entry.id, nextEntry.id]);
+      }
+    });
+
+    return pairs;
+  }
+
+  function findTieGroups(ranking) {
+    var groups = [];
+    var current = [];
+
+    ranking.forEach(function (entry, index) {
+      if (
+        index === 0 ||
+        entry.canonicalScore === ranking[index - 1].canonicalScore
+      ) {
+        current.push(entry.id);
+      } else {
+        if (current.length > 1) {
+          groups.push(current);
+        }
+        current = [entry.id];
+      }
+    });
+
+    if (current.length > 1) {
+      groups.push(current);
+    }
+
+    return groups;
+  }
+
+  function score(instrument, responses, profiles) {
+    var profileNames = (profiles || []).reduce(function (result, profile) {
+      result[profile.id] = profile.name;
+      return result;
+    }, {});
+    var blocks = normalizedBlocks(instrument, responses);
+    var scores = combineBlocks(instrument, blocks);
+    var ranking = rankScores(instrument.profileIds, scores, profileNames);
+
+    return {
+      complete: validateCompleteness(instrument, responses),
+      scores: scores,
+      blocks: blocks,
+      ranking: ranking,
+      topThree: ranking.slice(0, 3),
+      tieGroups: findTieGroups(ranking),
+      closePairs: findClosePairs(ranking, CLOSE_THRESHOLD),
+      stability: calculateStability(instrument, blocks, ranking, profileNames)
+    };
+  }
+
+  function coverage(instrument) {
+    return instrument.profileIds.reduce(function (result, profileId) {
+      result[profileId] = {
+        scenarios: instrument.scenarios.filter(function (item) {
+          return item.reactions.some(function (reaction) {
+            return numberOrZero(reaction.weights[profileId]) !== 0;
+          });
+        }).length,
+        principal: instrument.scenarios.filter(function (item) {
+          return item.reactions.some(function (reaction) {
+            return numberOrZero(reaction.weights[profileId]) === 2;
+          });
+        }).length,
+        tensions: instrument.tensions.filter(function (item) {
+          return item.left.profileId === profileId || item.right.profileId === profileId;
+        }).length
+      };
+      return result;
+    }, {});
+  }
+
+  // Quantas vezes cada par de perfis aparece no mesmo cenário como reação principal.
+  function pairMatrix(instrument) {
+    var matrix = {};
+    instrument.profileIds.forEach(function (a) {
+      matrix[a] = emptyProfileMap(instrument.profileIds, 0);
+    });
+
+    instrument.scenarios.forEach(function (item) {
+      var principals = item.reactions
+        .map(function (reaction) {
+          return Object.keys(reaction.weights).find(function (profileId) {
+            return numberOrZero(reaction.weights[profileId]) === 2;
+          });
+        })
+        .filter(Boolean);
+
+      principals.forEach(function (a) {
+        principals.forEach(function (b) {
+          if (a !== b && matrix[a] && Object.prototype.hasOwnProperty.call(matrix[a], b)) {
+            matrix[a][b] += 1;
+          }
+        });
+      });
+    });
+
+    return matrix;
+  }
+
+  return {
+    TENSION_VALUES: TENSION_VALUES,
+    CLOSE_THRESHOLD: CLOSE_THRESHOLD,
+    getBounds: getBounds,
+    scoreScenarios: scoreScenarios,
+    scoreTensions: scoreTensions,
+    normalizedBlocks: normalizedBlocks,
+    combineBlocks: combineBlocks,
+    isScenarioAnswerComplete: isScenarioAnswerComplete,
+    isTensionValue: isTensionValue,
+    validateCompleteness: validateCompleteness,
+    calculateStability: calculateStability,
+    findClosePairs: findClosePairs,
+    findTieGroups: findTieGroups,
+    score: score,
+    coverage: coverage,
+    pairMatrix: pairMatrix
+  };
+});
+
+    </script>
+    <script>
+/* js/storage.js */
+(function (root, factory) {
+  "use strict";
+
+  var storage = factory(root);
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = storage;
+  }
+
+  root.IdeiasIluministas = root.IdeiasIluministas || {};
+  root.IdeiasIluministas.storage = storage;
+})(typeof globalThis !== "undefined" ? globalThis : this, function (root) {
+  "use strict";
+
+  var KEY = "afinidade-iluminista:session:v1";
+  var SCHEMA_VERSION = 1;
+  var TTL_MS = 24 * 60 * 60 * 1000;
+  var memoryValue = null;
+
+  function getLocalStorage() {
+    try {
+      var candidate = root.localStorage;
+      var probeKey = KEY + ":probe";
+      candidate.setItem(probeKey, "1");
+      candidate.removeItem(probeKey);
+      return candidate;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function validEnvelope(envelope) {
+    return Boolean(
+      envelope &&
+      envelope.schemaVersion === SCHEMA_VERSION &&
+      Number.isFinite(envelope.expiresAt) &&
+      envelope.state &&
+      typeof envelope.state === "object"
+    );
+  }
+
+  function clear() {
+    memoryValue = null;
+    var local = getLocalStorage();
+    if (local) {
+      try {
+        local.removeItem(KEY);
+      } catch (error) {
+        // A sessão em memória continua funcionando quando o navegador bloqueia storage.
+      }
+    }
+  }
+
+  function save(state, persist) {
+    var envelope = {
+      schemaVersion: SCHEMA_VERSION,
+      expiresAt: Date.now() + TTL_MS,
+      state: state
+    };
+
+    memoryValue = envelope;
+
+    if (!persist) {
+      var localForRemoval = getLocalStorage();
+      if (localForRemoval) {
+        try {
+          localForRemoval.removeItem(KEY);
+        } catch (error) {
+          // Sem efeito sobre a cópia em memória.
+        }
+      }
+      return { persisted: false };
+    }
+
+    var local = getLocalStorage();
+    if (!local) {
+      return { persisted: false };
+    }
+
+    try {
+      local.setItem(KEY, JSON.stringify(envelope));
+      return { persisted: true };
+    } catch (error) {
+      return { persisted: false };
+    }
+  }
+
+  function readEnvelope() {
+    var local = getLocalStorage();
+
+    if (local) {
+      try {
+        var raw = local.getItem(KEY);
+        if (raw) {
+          return JSON.parse(raw);
+        }
+      } catch (error) {
+        memoryValue = null;
+        try {
+          local.removeItem(KEY);
+        } catch (removalError) {
+          // O valor inválido será ignorado.
+        }
+        return null;
+      }
+    }
+
+    return memoryValue;
+  }
+
+  function load() {
+    var envelope = readEnvelope();
+
+    if (!validEnvelope(envelope) || envelope.expiresAt <= Date.now()) {
+      clear();
+      return null;
+    }
+
+    memoryValue = envelope;
+    return envelope.state;
+  }
+
+  function isAvailable() {
+    return Boolean(getLocalStorage());
+  }
+
+  return {
+    key: KEY,
+    schemaVersion: SCHEMA_VERSION,
+    ttlMs: TTL_MS,
+    save: save,
+    load: load,
+    clear: clear,
+    isAvailable: isAvailable
+  };
+});
+
+
+    </script>
+    <script>
+/* js/app.js */
+(function (root) {
+  "use strict";
+
+  var App = root.IdeiasIluministas;
+  var instrument = App.instrument;
+  var profiles = App.profiles;
+  var scoring = App.scoring;
+  var storage = App.storage;
+
+  if (!instrument || !profiles || !scoring || !storage) {
+    return;
+  }
+
+  var app = document.getElementById("app");
+  var liveRegion = document.getElementById("live-region");
+  var progressRule = document.getElementById("progress-rule");
+  var progressFill = document.getElementById("progress-fill");
+  var brandReset = document.getElementById("brand-reset");
+
+  var SCREENS = ["intro", "scenarios", "tensions", "result"];
+  var TENSIONS_PER_PAGE = 2;
+  var SCENARIO_COUNT = instrument.scenarios.length;
+  var TENSION_PAGES = Math.ceil(instrument.tensions.length / TENSIONS_PER_PAGE);
+  var TOTAL_ITEMS = instrument.scenarios.length + instrument.tensions.length;
+  var AUTO_ADVANCE_DELAY = 550;
+
+  var TENSION_LABELS = [
+    { value: -2, label: "Muito mais a primeira" },
+    { value: -1, label: "Um pouco mais a primeira" },
+    { value: 0, label: "Entre as duas" },
+    { value: 1, label: "Um pouco mais a segunda" },
+    { value: 2, label: "Muito mais a segunda" }
+  ];
+
+  var autoAdvanceTimer = null;
+
+  /* ---------- estado ---------- */
+
+  function shuffle(list) {
+    var copy = list.slice();
+    for (var index = copy.length - 1; index > 0; index -= 1) {
+      var randomIndex = Math.floor(Math.random() * (index + 1));
+      var temporary = copy[index];
+      copy[index] = copy[randomIndex];
+      copy[randomIndex] = temporary;
+    }
+    return copy;
+  }
+
+  function ids(items) {
+    return items.map(function (item) {
+      return item.id;
+    });
+  }
+
+  function initialState() {
+    var reactionOrder = {};
+    instrument.scenarios.forEach(function (item) {
+      reactionOrder[item.id] = shuffle(ids(item.reactions));
+    });
+
+    return {
+      schemaVersion: storage.schemaVersion,
+      instrumentVersion: instrument.version,
+      screen: "intro",
+      page: 0,
+      name: "",
+      persist: false,
+      autoAdvance: true,
+      order: {
+        scenarios: shuffle(ids(instrument.scenarios)),
+        tensions: shuffle(ids(instrument.tensions)),
+        reactions: reactionOrder
+      },
+      answers: {
+        scenarios: {},
+        tensions: {}
+      }
+    };
+  }
+
+  function isMap(value) {
+    return Boolean(value && typeof value === "object" && !Array.isArray(value));
+  }
+
+  function itemById(items, id) {
+    return items.find(function (item) {
+      return item.id === id;
+    });
+  }
+
+  function samePermutation(candidate, expectedIds) {
+    if (!Array.isArray(candidate) || candidate.length !== expectedIds.length) {
+      return false;
+    }
+    var expected = expectedIds.slice().sort();
+    return candidate.slice().sort().every(function (id, index) {
+      return id === expected[index];
+    });
+  }
+
+  function validOrder(order) {
+    if (
+      !isMap(order) ||
+      !samePermutation(order.scenarios, ids(instrument.scenarios)) ||
+      !samePermutation(order.tensions, ids(instrument.tensions)) ||
+      !isMap(order.reactions)
+    ) {
+      return false;
+    }
+    return instrument.scenarios.every(function (item) {
+      return samePermutation(order.reactions[item.id], ids(item.reactions));
+    });
+  }
+
+  function validAnswers(candidate) {
+    if (!isMap(candidate) || !isMap(candidate.scenarios) || !isMap(candidate.tensions)) {
+      return false;
+    }
+
+    var validScenarios = Object.keys(candidate.scenarios).every(function (id) {
+      var item = itemById(instrument.scenarios, id);
+      var answer = candidate.scenarios[id];
+      if (!item || !isMap(answer)) {
+        return false;
+      }
+      var reactionIds = ids(item.reactions);
+      var closestValid = answer.closest === null || reactionIds.indexOf(answer.closest) !== -1;
+      var farthestValid = answer.farthest === null || reactionIds.indexOf(answer.farthest) !== -1;
+      var distinct = !answer.closest || !answer.farthest || answer.closest !== answer.farthest;
+      return closestValid && farthestValid && distinct;
+    });
+
+    var validTensions = Object.keys(candidate.tensions).every(function (id) {
+      return (
+        Boolean(itemById(instrument.tensions, id)) &&
+        scoring.isTensionValue(candidate.tensions[id])
+      );
+    });
+
+    return validScenarios && validTensions;
+  }
+
+  function maximumPage(screen) {
+    return {
+      intro: 0,
+      scenarios: SCENARIO_COUNT - 1,
+      tensions: TENSION_PAGES - 1,
+      result: 0
+    }[screen];
+  }
+
+  function validState(candidate) {
+    if (
+      !isMap(candidate) ||
+      candidate.schemaVersion !== storage.schemaVersion ||
+      candidate.instrumentVersion !== instrument.version ||
+      SCREENS.indexOf(candidate.screen) === -1 ||
+      typeof candidate.name !== "string" ||
+      typeof candidate.persist !== "boolean" ||
+      typeof candidate.autoAdvance !== "boolean" ||
+      !validOrder(candidate.order) ||
+      !validAnswers(candidate.answers)
+    ) {
+      return false;
+    }
+    if (
+      candidate.screen === "result" &&
+      !scoring.validateCompleteness(instrument, candidate.answers).complete
+    ) {
+      return false;
+    }
+    return (
+      Number.isInteger(candidate.page) &&
+      candidate.page >= 0 &&
+      candidate.page <= maximumPage(candidate.screen)
+    );
+  }
+
+  var restored = storage.load();
+  var state = validState(restored) ? restored : initialState();
+
+  function saveState() {
+    storage.save(state, state.persist);
+  }
+
+  /* ---------- utilidades de DOM ---------- */
+
+  function element(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) {
+      node.className = className;
+    }
+    if (typeof text === "string") {
+      node.textContent = text;
+    }
+    return node;
+  }
+
+  function button(label, className, handler) {
+    var node = element("button", className, label);
+    node.type = "button";
+    node.addEventListener("click", handler);
+    return node;
+  }
+
+  function announce(message) {
+    liveRegion.textContent = "";
+    root.setTimeout(function () {
+      liveRegion.textContent = message;
+    }, 20);
+  }
+
+  function reducedMotion() {
+    return Boolean(root.matchMedia && root.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  function clearApp() {
+    while (app.firstChild) {
+      app.removeChild(app.firstChild);
+    }
+  }
+
+  function focusHeading() {
+    root.requestAnimationFrame(function () {
+      var target = app.querySelector("[data-focus-target]") || app.querySelector("h1, h2");
+      if (target) {
+        target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+      } else {
+        app.focus({ preventScroll: true });
+      }
+      root.scrollTo({ top: 0, behavior: reducedMotion() ? "auto" : "smooth" });
+    });
+  }
+
+  function padTwo(number) {
+    return String(number).padStart(2, "0");
+  }
+
+  function profileById(id) {
+    return itemById(profiles, id);
+  }
+
+  function showError(container, message) {
+    var existing = container.querySelector(".error-note");
+    if (existing) {
+      existing.remove();
+    }
+    var error = element("p", "error-note", message);
+    error.setAttribute("role", "alert");
+    error.setAttribute("tabindex", "-1");
+    var actions = container.querySelector(".actions");
+    container.insertBefore(error, actions || null);
+    error.focus();
+  }
+
+  /* ---------- progresso ---------- */
+
+  function answeredScenarios() {
+    return instrument.scenarios.filter(function (item) {
+      return scoring.isScenarioAnswerComplete(item, state.answers.scenarios[item.id]);
+    }).length;
+  }
+
+  function answeredTensions() {
+    return instrument.tensions.filter(function (item) {
+      return scoring.isTensionValue(state.answers.tensions[item.id]);
+    }).length;
+  }
+
+  function hasProgress() {
+    return (
+      state.screen !== "intro" ||
+      answeredScenarios() > 0 ||
+      answeredTensions() > 0 ||
+      Boolean(state.name.trim()) ||
+      state.persist
+    );
+  }
+
+  function updateProgress() {
+    var active = state.screen === "scenarios" || state.screen === "tensions";
+    var answered = answeredScenarios() + answeredTensions();
+    var percent = state.screen === "result" ? 100 : Math.round(100 * answered / TOTAL_ITEMS);
+
+    progressRule.hidden = state.screen === "intro";
+    progressRule.setAttribute("aria-valuenow", String(percent));
+    progressRule.setAttribute("aria-valuetext", percent + "% respondido");
+    progressFill.style.width = percent + "%";
+    progressRule.classList.toggle("is-active", active);
+  }
+
+  /* ---------- navegação ---------- */
+
+  function cancelAutoAdvance() {
+    if (autoAdvanceTimer !== null) {
+      root.clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
+    }
+  }
+
+  function go(screen, page) {
+    cancelAutoAdvance();
+    state.screen = screen;
+    state.page = typeof page === "number" ? page : 0;
+    saveState();
+    render();
+  }
+
+  function screenSection(className) {
+    var section = element("section", "screen " + className);
+    if (!reducedMotion()) {
+      section.classList.add("is-entering");
+    }
+    return section;
+  }
+
+  function actionsRow(backHandler, nextLabel, nextHandler, nextDisabled) {
+    var row = element("div", "actions");
+    if (backHandler) {
+      row.appendChild(button("Voltar", "button button-quiet", backHandler));
+    } else {
+      row.appendChild(element("span"));
+    }
+    var next = button(nextLabel, "button button-ink", nextHandler);
+    if (nextDisabled) {
+      next.setAttribute("aria-disabled", "true");
+    }
+    row.appendChild(next);
+    return row;
+  }
+
+  /* ---------- capa ---------- */
+
+  function renderIntro() {
+    var section = screenSection("screen-intro");
+
+    section.appendChild(element("p", "eyebrow", "Questionário · cerca de 25 minutos"));
+    section.appendChild(
+      element("h1", "display", "Quais ideias do Iluminismo se parecem com as suas?")
+    );
+    section.appendChild(element("hr", "rule"));
+    section.appendChild(
+      element(
+        "p",
+        "lead drop-cap",
+        "Você vai ler " + SCENARIO_COUNT + " situações curtas do dia a dia de uma cidade e, em cada uma, marcar a reação mais próxima da sua e a mais distante. Depois, oito escolhas rápidas entre duas posições. Ao final, os três perfis históricos com maior índice de compatibilidade com suas respostas — sem respostas certas e sem envio de dados."
+      )
+    );
+
+    var form = element("form", "intro-form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      start();
+    });
+
+    var field = element("div", "field-inline");
+    var label = element("label", "", "Seu nome ou apelido");
+    label.htmlFor = "participant-name";
+    var input = document.createElement("input");
+    input.type = "text";
+    input.id = "participant-name";
+    input.maxLength = 60;
+    input.autocomplete = "nickname";
+    input.placeholder = "opcional";
+    input.value = state.name;
+    input.addEventListener("input", function () {
+      state.name = input.value;
+      saveState();
+    });
+    field.appendChild(label);
+    field.appendChild(input);
+    form.appendChild(field);
+
+    var submit = element("button", "button button-ink", "Começar");
+    submit.type = "submit";
+    form.appendChild(submit);
+    section.appendChild(form);
+
+    var options = element("p", "fine-print");
+    var persistToggle = element("button", "link-button");
+    persistToggle.type = "button";
+    persistToggle.setAttribute("aria-pressed", String(state.persist));
+    function refreshPersistToggle() {
+      persistToggle.textContent = state.persist
+        ? "Progresso será lembrado neste aparelho por 24 horas"
+        : "Lembrar meu progresso neste aparelho";
+      persistToggle.setAttribute("aria-pressed", String(state.persist));
+    }
+    refreshPersistToggle();
+    if (!storage.isAvailable()) {
+      persistToggle.disabled = true;
+      persistToggle.textContent = "Este navegador não permite lembrar o progresso";
+    }
+    persistToggle.addEventListener("click", function () {
+      state.persist = !state.persist;
+      saveState();
+      refreshPersistToggle();
+      announce(state.persist ? "O progresso será lembrado neste aparelho." : "O progresso não será lembrado.");
+    });
+    options.appendChild(persistToggle);
+    section.appendChild(options);
+
+    var resume = answeredScenarios() + answeredTensions();
+    if (resume > 0) {
+      section.appendChild(
+        element("p", "fine-print", "Você já respondeu " + resume + " de " + TOTAL_ITEMS + " itens. Começar continua de onde parou.")
+      );
+    }
+
+    app.appendChild(section);
+
+    function start() {
+      var firstPending = state.order.scenarios.findIndex(function (id) {
+        return !scoring.isScenarioAnswerComplete(itemById(instrument.scenarios, id), state.answers.scenarios[id]);
+      });
+      if (firstPending !== -1) {
+        go("scenarios", firstPending);
+      } else if (answeredTensions() < instrument.tensions.length) {
+        go("tensions", 0);
+      } else {
+        go("result", 0);
+      }
+    }
+  }
+
+  /* ---------- cenários ---------- */
+
+  function currentScenario() {
+    return itemById(instrument.scenarios, state.order.scenarios[state.page]);
+  }
+
+  function scenarioAnswer(item) {
+    var answer = state.answers.scenarios[item.id];
+    if (!isMap(answer)) {
+      answer = { closest: null, farthest: null };
+      state.answers.scenarios[item.id] = answer;
+    }
+    return answer;
+  }
+
+  function reactionLabel(item, reactionId) {
+    return itemById(item.reactions, reactionId).text;
+  }
+
+  function markReaction(item, reactionId, kind) {
+    var answer = scenarioAnswer(item);
+    var other = kind === "closest" ? "farthest" : "closest";
+
+    if (answer[kind] === reactionId) {
+      answer[kind] = null;
+      announce("Marcação removida.");
+    } else {
+      if (answer[other] === reactionId) {
+        answer[other] = null;
+      }
+      answer[kind] = reactionId;
+      announce(
+        (kind === "closest" ? "Mais próxima: " : "Mais distante: ") + reactionLabel(item, reactionId)
+      );
+    }
+    saveState();
+    updateProgress();
+  }
+
+  // Primeiro toque marca "mais próxima"; segundo toque em outra marca "mais distante";
+  // toque em uma reação já marcada desfaz; com ambas marcadas, o toque substitui a "mais distante".
+  function tapReaction(item, reactionId) {
+    var answer = scenarioAnswer(item);
+    if (answer.closest === reactionId) {
+      markReaction(item, reactionId, "closest");
+    } else if (answer.farthest === reactionId) {
+      markReaction(item, reactionId, "farthest");
+    } else if (!answer.closest) {
+      markReaction(item, reactionId, "closest");
+    } else {
+      markReaction(item, reactionId, "farthest");
+    }
+  }
+
+  function nextFromScenario(section, item) {
+    cancelAutoAdvance();
+    if (!scoring.isScenarioAnswerComplete(item, state.answers.scenarios[item.id])) {
+      showError(section, "Marque uma reação como mais próxima e outra como mais distante.");
+      return;
+    }
+    if (state.page === SCENARIO_COUNT - 1) {
+      go("tensions", 0);
+    } else {
+      go("scenarios", state.page + 1);
+    }
+  }
+
+  function renderScenario() {
+    var item = currentScenario();
+    var answer = scenarioAnswer(item);
+    var section = screenSection("screen-scenario");
+
+    var counter = element("p", "counter");
+    counter.setAttribute("aria-label", "Situação " + (state.page + 1) + " de " + SCENARIO_COUNT);
+    counter.appendChild(element("span", "counter-current", padTwo(state.page + 1)));
+    counter.appendChild(element("span", "counter-total", " / " + SCENARIO_COUNT));
+    section.appendChild(counter);
+
+    var situation = element("h1", "situation drop-cap", item.situation);
+    situation.setAttribute("data-focus-target", "");
+    section.appendChild(situation);
+    section.appendChild(element("hr", "rule"));
+
+    var instruction = element(
+      "p",
+      "instruction",
+      "Marque a reação mais próxima da sua e, depois, a mais distante."
+    );
+    instruction.id = "instruction-" + item.id;
+    section.appendChild(instruction);
+
+    var list = element("div", "reactions");
+    list.setAttribute("role", "group");
+    list.setAttribute("aria-labelledby", instruction.id);
+
+    var cards = {};
+
+    function refreshCards() {
+      Object.keys(cards).forEach(function (reactionId) {
+        var card = cards[reactionId];
+        var isClosest = answer.closest === reactionId;
+        var isFarthest = answer.farthest === reactionId;
+        card.root.classList.toggle("is-closest", isClosest);
+        card.root.classList.toggle("is-farthest", isFarthest);
+        card.tag.textContent = isClosest ? "Mais próxima" : isFarthest ? "Mais distante" : "";
+        card.closestButton.setAttribute("aria-pressed", String(isClosest));
+        card.farthestButton.setAttribute("aria-pressed", String(isFarthest));
+        card.main.setAttribute(
+          "aria-label",
+          card.text + (isClosest ? ". Marcada como mais próxima." : isFarthest ? ". Marcada como mais distante." : "")
+        );
+      });
+      var complete = scoring.isScenarioAnswerComplete(item, answer);
+      section.classList.toggle("is-complete", complete);
+      var existing = section.querySelector(".error-note");
+      if (complete && existing) {
+        existing.remove();
+      }
+      if (complete && state.autoAdvance) {
+        cancelAutoAdvance();
+        autoAdvanceTimer = root.setTimeout(function () {
+          autoAdvanceTimer = null;
+          nextFromScenario(section, item);
+        }, reducedMotion() ? 150 : AUTO_ADVANCE_DELAY);
+      } else {
+        cancelAutoAdvance();
+      }
+    }
+
+    state.order.reactions[item.id].forEach(function (reactionId) {
+      var reaction = itemById(item.reactions, reactionId);
+      var card = element("div", "reaction");
+
+      var main = element("button", "reaction-main");
+      main.type = "button";
+      main.appendChild(element("span", "reaction-text", reaction.text));
+      var tag = element("span", "reaction-tag");
+      tag.setAttribute("aria-hidden", "true");
+      main.appendChild(tag);
+      main.addEventListener("click", function () {
+        tapReaction(item, reactionId);
+        refreshCards();
+      });
+
+      var controls = element("div", "reaction-controls");
+      var closestButton = button("mais próxima", "chip", function () {
+        markReaction(item, reactionId, "closest");
+        refreshCards();
+      });
+      var farthestButton = button("mais distante", "chip", function () {
+        markReaction(item, reactionId, "farthest");
+        refreshCards();
+      });
+      closestButton.setAttribute("aria-label", "Marcar como mais próxima: " + reaction.text);
+      farthestButton.setAttribute("aria-label", "Marcar como mais distante: " + reaction.text);
+      controls.appendChild(closestButton);
+      controls.appendChild(farthestButton);
+
+      card.appendChild(main);
+      card.appendChild(controls);
+      list.appendChild(card);
+
+      cards[reactionId] = {
+        root: card,
+        main: main,
+        tag: tag,
+        text: reaction.text,
+        closestButton: closestButton,
+        farthestButton: farthestButton
+      };
+    });
+
+    section.appendChild(list);
+
+    var settings = element("p", "fine-print");
+    var autoToggle = element("button", "link-button");
+    autoToggle.type = "button";
+    function refreshAutoToggle() {
+      autoToggle.textContent = state.autoAdvance
+        ? "Avanço automático ligado"
+        : "Avanço automático desligado";
+      autoToggle.setAttribute("aria-pressed", String(state.autoAdvance));
+    }
+    refreshAutoToggle();
+    autoToggle.addEventListener("click", function () {
+      state.autoAdvance = !state.autoAdvance;
+      saveState();
+      refreshAutoToggle();
+      cancelAutoAdvance();
+      announce(state.autoAdvance ? "Avanço automático ligado." : "Avanço automático desligado.");
+    });
+    settings.appendChild(autoToggle);
+    section.appendChild(settings);
+
+    section.appendChild(
+      actionsRow(
+        function () {
+          if (state.page === 0) {
+            go("intro", 0);
+          } else {
+            go("scenarios", state.page - 1);
+          }
+        },
+        state.page === SCENARIO_COUNT - 1 ? "Ir para a última parte" : "Continuar",
+        function () {
+          nextFromScenario(section, item);
+        }
+      )
+    );
+
+    app.appendChild(section);
+
+    // Estado visual inicial sem disparar o avanço automático ao voltar a uma tela já respondida.
+    var wasAutoAdvance = state.autoAdvance;
+    state.autoAdvance = false;
+    refreshCards();
+    state.autoAdvance = wasAutoAdvance;
+  }
+
+  /* ---------- tensões ---------- */
+
+  function tensionPageItems() {
+    return state.order.tensions
+      .slice(state.page * TENSIONS_PER_PAGE, state.page * TENSIONS_PER_PAGE + TENSIONS_PER_PAGE)
+      .map(function (id) {
+        return itemById(instrument.tensions, id);
+      });
+  }
+
+  function renderTensions() {
+    var pageItems = tensionPageItems();
+    var section = screenSection("screen-tensions");
+
+    var counter = element("p", "counter counter-small");
+    counter.appendChild(element("span", "counter-current", "Última parte"));
+    counter.appendChild(element("span", "counter-total", " · " + (state.page + 1) + " / " + TENSION_PAGES));
+    section.appendChild(counter);
+
+    var title = element("h1", "display display-small", "Entre duas posições, para qual lado você pende?");
+    title.setAttribute("data-focus-target", "");
+    section.appendChild(title);
+    section.appendChild(element("hr", "rule"));
+
+    pageItems.forEach(function (item, itemIndex) {
+      var number = state.page * TENSIONS_PER_PAGE + itemIndex + 1;
+      var fieldset = element("fieldset", "tension");
+      fieldset.appendChild(element("legend", "sr-only", "Tensão " + number + " de " + instrument.tensions.length));
+
+      var poles = element("div", "poles");
+      var left = element("div", "pole");
+      left.appendChild(element("span", "pole-number", "1"));
+      left.appendChild(element("p", "pole-text", item.left.text));
+      var right = element("div", "pole");
+      right.appendChild(element("span", "pole-number", "2"));
+      right.appendChild(element("p", "pole-text", item.right.text));
+      poles.appendChild(left);
+      poles.appendChild(right);
+      fieldset.appendChild(poles);
+
+      var scale = element("div", "tension-scale");
+      TENSION_LABELS.forEach(function (option) {
+        var label = element("label", "scale-option");
+        var input = document.createElement("input");
+        input.type = "radio";
+        input.name = item.id;
+        input.value = String(option.value);
+        input.checked = state.answers.tensions[item.id] === option.value;
+        input.addEventListener("change", function () {
+          state.answers.tensions[item.id] = option.value;
+          saveState();
+          updateProgress();
+          var existing = section.querySelector(".error-note");
+          if (existing && pageComplete()) {
+            existing.remove();
+          }
+        });
+        label.appendChild(input);
+        label.appendChild(element("span", "scale-mark"));
+        label.appendChild(element("span", "scale-text", option.label));
+        scale.appendChild(label);
+      });
+      fieldset.appendChild(scale);
+      section.appendChild(fieldset);
+    });
+
+    function pageComplete() {
+      return pageItems.every(function (item) {
+        return scoring.isTensionValue(state.answers.tensions[item.id]);
+      });
+    }
+
+    section.appendChild(
+      actionsRow(
+        function () {
+          if (state.page === 0) {
+            go("scenarios", SCENARIO_COUNT - 1);
+          } else {
+            go("tensions", state.page - 1);
+          }
+        },
+        state.page === TENSION_PAGES - 1 ? "Ver meu resultado" : "Continuar",
+        function () {
+          if (!pageComplete()) {
+            showError(section, "Escolha uma posição em cada uma das duas tensões.");
+            return;
+          }
+          if (state.page === TENSION_PAGES - 1) {
+            var completeness = scoring.validateCompleteness(instrument, state.answers);
+            if (!completeness.complete) {
+              var firstMissing = completeness.missing[0];
+              var scenarioIndex = state.order.scenarios.indexOf(firstMissing);
+              showError(section, "Ainda há uma situação sem resposta. Use Voltar para revisá-la.");
+              if (scenarioIndex !== -1) {
+                go("scenarios", scenarioIndex);
+              }
+              return;
+            }
+            go("result", 0);
+          } else {
+            go("tensions", state.page + 1);
+          }
+        }
+      )
+    );
+
+    app.appendChild(section);
+  }
+
+  /* ---------- resultado ---------- */
+
+  function ofPhrase(essence) {
+    if (essence.indexOf("a ") === 0) {
+      return "da " + essence.slice(2);
+    }
+    if (essence.indexOf("o ") === 0) {
+      return "do " + essence.slice(2);
+    }
+    return "de " + essence;
+  }
+
+  function synthesisSentence(topThree) {
+    var first = profileById(topThree[0].id);
+    var second = profileById(topThree[1].id);
+    var third = profileById(topThree[2].id);
+    return (
+      "Você combina " + first.essence + " com " + second.essence + ", com traços " + ofPhrase(third.essence) + "."
+    );
+  }
+
+  function footnoteSentence(result) {
+    var topIds = result.topThree.map(function (entry) {
+      return entry.id;
+    });
+    var tie = result.tieGroups.find(function (group) {
+      return group.some(function (id) {
+        return topIds.indexOf(id) !== -1;
+      });
+    });
+    if (tie) {
+      var tied = tie.map(function (id) {
+        return profileById(id).shortName;
+      });
+      return (
+        tied.slice(0, -1).join(", ") + " e " + tied[tied.length - 1] +
+        " obtiveram exatamente o mesmo índice; a ordem entre eles é apenas alfabética."
+      );
+    }
+    if (result.closePairs.length > 0) {
+      var names = [];
+      result.closePairs.forEach(function (pair) {
+        pair.forEach(function (id) {
+          var shortName = profileById(id).shortName;
+          if (names.indexOf(shortName) === -1) {
+            names.push(shortName);
+          }
+        });
+      });
+      return (
+        "Os índices de " + names.slice(0, -1).join(", ") + " e " + names[names.length - 1] +
+        " ficaram a menos de " + scoring.CLOSE_THRESHOLD + " pontos; a ordem entre eles é um empate técnico."
+      );
+    }
+    if (result.stability.sensitive) {
+      return "Um dos três perfis só entra no grupo pela soma das duas partes do questionário; as descrições dizem mais do que a ordem.";
+    }
+    return "";
+  }
+
+  function renderBars(topThree) {
+    var list = element("ol", "bars");
+    list.setAttribute("aria-label", "Índices de compatibilidade dos três perfis mais próximos");
+    topThree.forEach(function (entry) {
+      var profile = profileById(entry.id);
+      var row = element("li", "bar-row");
+      row.appendChild(element("span", "bar-name", profile.name));
+      var track = element("span", "bar-track");
+      track.setAttribute("aria-hidden", "true");
+      var fill = element("span", "bar-fill");
+      fill.style.width = Math.min(100, Math.max(0, entry.score)) + "%";
+      track.appendChild(fill);
+      row.appendChild(track);
+      row.appendChild(element("span", "bar-score", Math.round(entry.score) + "/100"));
+      list.appendChild(row);
+    });
+    return list;
+  }
+
+  function renderProfileCard(entry, index) {
+    var profile = profileById(entry.id);
+    var card = element("details", "profile-card");
+    if (index === 0) {
+      card.open = true;
+    }
+    var summary = element("summary", "profile-summary");
+    summary.appendChild(element("span", "profile-rank", (index + 1) + "º"));
+    var heading = element("span", "profile-heading");
+    heading.appendChild(element("span", "profile-name", profile.name));
+    heading.appendChild(element("span", "profile-synthesis", profile.synthesis));
+    summary.appendChild(heading);
+    summary.appendChild(element("span", "profile-score", Math.round(entry.score) + "/100"));
+    summary.appendChild(element("span", "profile-toggle", index === 0 ? "" : "ver mais"));
+    card.appendChild(summary);
+
+    var body = element("div", "profile-body");
+    body.appendChild(element("p", "profile-period", profile.period));
+    body.appendChild(element("p", "", profile.description));
+    var ideas = element("ul", "idea-list");
+    profile.ideas.forEach(function (idea) {
+      ideas.appendChild(element("li", "", idea));
+    });
+    body.appendChild(ideas);
+    card.appendChild(body);
+    return card;
+  }
+
+  function renderResult() {
+    var result = scoring.score(instrument, state.answers, profiles);
+    var section = screenSection("screen-result");
+    var name = state.name.trim();
+
+    section.appendChild(element("p", "eyebrow", "Resultado"));
+    var title = element("h1", "display", name ? name + ", este é o seu resultado" : "Seu resultado");
+    title.setAttribute("data-focus-target", "");
+    section.appendChild(title);
+    section.appendChild(element("hr", "rule"));
+    section.appendChild(element("p", "lead drop-cap", synthesisSentence(result.topThree)));
+
+    section.appendChild(renderBars(result.topThree));
+
+    var cards = element("div", "profile-cards");
+    result.topThree.forEach(function (entry, index) {
+      cards.appendChild(renderProfileCard(entry, index));
+    });
+    section.appendChild(cards);
+
+    var howTo = element("details", "how-to");
+    howTo.appendChild(element("summary", "", "Como ler este resultado"));
+    howTo.appendChild(
+      element(
+        "p",
+        "",
+        "O índice de 0 a 100 compara suas respostas com o padrão de cada perfil dentro deste questionário. Não é percentual de identidade nem probabilidade, e um índice baixo não significa rejeição. Os dez perfis se sobrepõem e pertencem a níveis diferentes: há tradições regionais, correntes filosóficas, uma doutrina econômica e uma prática de governo."
+      )
+    );
+    howTo.appendChild(
+      element(
+        "p",
+        "",
+        "As situações valem 80% do índice e as oito tensões finais, 20%. Marcar uma reação como mais próxima aproxima você do perfil dela; marcar como mais distante afasta."
+      )
+    );
+    section.appendChild(howTo);
+
+    var resultActions = element("div", "actions actions-result");
+    resultActions.appendChild(
+      button("Imprimir", "button button-quiet", function () {
+        root.print();
+      })
+    );
+    resultActions.appendChild(
+      button("Refazer", "button button-ink", function () {
+        if (root.confirm("Apagar as respostas e começar de novo?")) {
+          storage.clear();
+          state = initialState();
+          render();
+          announce("Respostas apagadas.");
+        }
+      })
+    );
+    section.appendChild(resultActions);
+
+    var footnote = footnoteSentence(result);
+    if (footnote) {
+      section.appendChild(element("p", "footnote", footnote));
+    }
+
+    app.appendChild(section);
+  }
+
+  /* ---------- render ---------- */
+
+  function render() {
+    clearApp();
+    updateProgress();
+
+    if (state.screen === "intro") {
+      renderIntro();
+    } else if (state.screen === "scenarios") {
+      renderScenario();
+    } else if (state.screen === "tensions") {
+      renderTensions();
+    } else {
+      renderResult();
+    }
+
+    document.body.setAttribute("data-screen", state.screen);
+    document.title =
+      state.screen === "result"
+        ? "Seu resultado · Afinidades com o Iluminismo"
+        : "Afinidades com o Iluminismo";
+    focusHeading();
+  }
+
+  // Na impressão, os cartões recolhidos do resultado precisam estar abertos.
+  root.addEventListener("beforeprint", function () {
+    app.querySelectorAll("details").forEach(function (details) {
+      details.open = true;
+    });
+  });
+
+  brandReset.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (hasProgress() && !root.confirm("Voltar à capa e apagar as respostas desta sessão?")) {
+      return;
+    }
+    cancelAutoAdvance();
+    storage.clear();
+    state = initialState();
+    render();
+    announce("Sessão reiniciada.");
+  });
+
+  render();
+})(typeof globalThis !== "undefined" ? globalThis : this);
+
+    </script>
+  </body>
+</html>
