@@ -14,7 +14,7 @@
 
   var KEY = "afinidade-iluminista:v3:session";
   var SCHEMA_VERSION = 1;
-  var TTL_MS = 24 * 60 * 60 * 1000;
+  var TTL_MS = 48 * 60 * 60 * 1000;
   var memoryValue = null;
 
   function getLocalStorage() {

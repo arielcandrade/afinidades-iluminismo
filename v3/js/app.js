@@ -76,7 +76,7 @@
       screen: "intro",
       page: 0,
       name: "",
-      persist: false,
+      persist: true,
       autoAdvance: true,
       order: {
         scenarios: shuffle(ids(instrument.scenarios)),
@@ -310,7 +310,7 @@
   }
 
   function hasProgress() {
-    return state.screen !== "intro" || answeredTotal() > 0 || Boolean(state.name.trim()) || state.persist;
+    return state.screen !== "intro" || answeredTotal() > 0 || Boolean(state.name.trim());
   }
 
   function updateProgress() {
@@ -408,27 +408,13 @@
     form.appendChild(submit);
     section.appendChild(form);
 
-    var options = element("p", "fine-print");
-    var persistToggle = element("button", "link-button");
-    persistToggle.type = "button";
-    function refreshPersistToggle() {
-      persistToggle.textContent = state.persist
-        ? "Progresso será lembrado neste aparelho por 24 horas"
-        : "Lembrar meu progresso neste aparelho";
-      persistToggle.setAttribute("aria-pressed", String(state.persist));
-    }
-    refreshPersistToggle();
-    if (!storage.isAvailable()) {
-      persistToggle.disabled = true;
-      persistToggle.textContent = "Este navegador não permite lembrar o progresso";
-    }
-    persistToggle.addEventListener("click", function () {
-      state.persist = !state.persist;
-      saveState();
-      refreshPersistToggle();
-      announce(state.persist ? "O progresso será lembrado neste aparelho." : "O progresso não será lembrado.");
-    });
-    options.appendChild(persistToggle);
+    var options = element(
+      "p",
+      "fine-print",
+      storage.isAvailable()
+        ? "Seu progresso fica salvo automaticamente neste aparelho por 48 horas."
+        : "Este navegador não permite salvar o progresso."
+    );
     section.appendChild(options);
 
     var resume = answeredTotal();

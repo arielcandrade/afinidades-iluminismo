@@ -16,7 +16,7 @@ Acesse `http://localhost:8000`. Para publicação, basta servir a pasta em qualq
 
 ## Como funciona para quem responde
 
-1. **Capa** — nome ou apelido opcional; opção de lembrar o progresso neste aparelho por 24 horas.
+1. **Capa** — nome ou apelido opcional; progresso salvo automaticamente neste aparelho por 48 horas.
 2. **24 situações**, uma por tela — situação curta e cinco reações. A pessoa marca a **mais próxima** e a **mais distante**. Cada reação nomeia um custo; não há alternativa obviamente correta.
 3. **4 situações em dois tempos** — depois da primeira escolha, aparece um **novo fato** e a pessoa decide de novo entre cinco reações reformuladas.
 4. **9 tensões**, três por tela — duas posições e uma escala de cinco pontos.
