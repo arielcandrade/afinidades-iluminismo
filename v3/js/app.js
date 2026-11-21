@@ -260,6 +260,61 @@
     });
   }
 
+  var RESET_WARNING =
+    "Tem certeza que quer apagar todas as suas respostas e recomeçar o formulário? Não será possível recuperar as respostas se você prosseguir.";
+
+  function confirmReset(onConfirm) {
+    if (typeof root.HTMLDialogElement !== "function") {
+      if (root.confirm(RESET_WARNING)) {
+        onConfirm();
+      }
+      return;
+    }
+
+    var dialog = element("dialog", "confirm-dialog");
+    dialog.setAttribute("aria-labelledby", "confirm-dialog-title");
+    dialog.setAttribute("aria-describedby", "confirm-dialog-text");
+
+    var body = element("div", "confirm-dialog-body");
+    var title = element("h2", "confirm-dialog-title", "Apagar respostas?");
+    title.id = "confirm-dialog-title";
+    var text = element("p", "", RESET_WARNING);
+    text.id = "confirm-dialog-text";
+
+    var actions = element("div", "confirm-dialog-actions");
+    var cancel = button("Cancelar", "button button-quiet", function () {
+      dialog.close("cancel");
+    });
+    var proceed = button("Sim, apagar e recomeçar", "button button-ink", function () {
+      dialog.close("confirm");
+    });
+    actions.appendChild(cancel);
+    actions.appendChild(proceed);
+
+    body.appendChild(title);
+    body.appendChild(text);
+    body.appendChild(actions);
+    dialog.appendChild(body);
+
+    // Clique no fundo escurecido atinge o próprio <dialog>, fora do corpo.
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) {
+        dialog.close("cancel");
+      }
+    });
+    dialog.addEventListener("close", function () {
+      var confirmed = dialog.returnValue === "confirm";
+      dialog.remove();
+      if (confirmed) {
+        onConfirm();
+      }
+    });
+
+    document.body.appendChild(dialog);
+    dialog.showModal();
+    cancel.focus();
+  }
+
   function padTwo(number) {
     return String(number).padStart(2, "0");
   }
@@ -1230,12 +1285,12 @@
     resultActions.appendChild(copyButton);
     resultActions.appendChild(
       button("Refazer", "button button-ink", function () {
-        if (root.confirm("Apagar as respostas e começar de novo?")) {
+        confirmReset(function () {
           storage.clear();
           state = initialState();
           render();
           announce("Respostas apagadas.");
-        }
+        });
       })
     );
     section.appendChild(resultActions);
