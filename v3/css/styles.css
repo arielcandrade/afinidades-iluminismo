@@ -1187,6 +1187,102 @@ a {
   margin-bottom: 0.3rem;
 }
 
+.figure-read {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border: 1.5px solid var(--ink);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.figure-read::after {
+  content: " →";
+}
+
+.figure-read:hover,
+.figure-read:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- texto de uma personalidade ---------- */
+
+.figure-back {
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+}
+
+.figure-back a {
+  color: var(--ink-faint);
+  text-underline-offset: 0.2em;
+}
+
+.figure-article-head {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0 1.5rem;
+  align-items: end;
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.figure-article-head .figure-meta {
+  margin-top: 0.75rem;
+}
+
+.figure-article-head .figure-role {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .figure-article-head {
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0 1rem;
+  }
+
+  .figure-article-head .display {
+    font-size: var(--step-2);
+  }
+}
+
+.figure-article h2 {
+  margin: 2rem 0 0.5rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--step-1);
+}
+
+.figure-article ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figure-article li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.2rem;
+  text-indent: -1.2rem;
+}
+
+.figure-article li::before {
+  content: "—";
+  margin-right: 0.45rem;
+  color: var(--accent);
+}
+
+.figure-sources {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.figure-sources ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.1rem;
+}
+
 /* ---------- movimento reduzido ---------- */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1226,12 +1322,59 @@ a {
   .profile-toggle,
   .profile-more,
   .figure-nav,
-  .figure-top {
+  .figure-top,
+  .figure-back,
+  .figure-read {
     display: none !important;
   }
 
   .figure-card {
     break-inside: avoid;
+  }
+
+  .figure-article-head {
+    grid-template-columns: 6rem 1fr;
+    padding-bottom: 1rem;
+  }
+
+  .figure-article-page {
+    font-size: 10.5pt;
+    line-height: 1.42;
+  }
+
+  .figure-article h2 {
+    margin: 1rem 0 0.35rem;
+    break-after: avoid;
+  }
+
+  .figure-article p {
+    margin: 0 0 0.5em;
+  }
+
+  .figure-article li {
+    margin-bottom: 0.3rem;
+  }
+
+  .figure-article p,
+  .figure-article li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .figure-sources {
+    margin-top: 1rem;
+    font-size: 8.5pt;
+  }
+
+  .figure-sources .section-title {
+    margin: 0 0 0.25rem;
+    padding-top: 0.5rem;
+    font-size: 11pt;
+  }
+
+  .figure-sources p,
+  .figure-sources ul {
+    margin: 0 0 0.2rem;
   }
 
   .page {

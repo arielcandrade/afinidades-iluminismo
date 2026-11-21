@@ -355,6 +355,12 @@
         "Filho de judeus portugueses refugiados em Amsterdã, foi expulso da sinagoga aos 23 anos. Identificou Deus com a natureza, negou os milagres e um Deus pessoal e leu a Bíblia como documento histórico. Defendeu a liberdade de pensamento e viu na democracia o regime mais natural. Para muitos historiadores, é o fundador do Iluminismo radical.",
       works: ["Tratado teológico-político (1670)", "Ética (1677, póstuma)"],
       wikipedia: "https://pt.wikipedia.org/wiki/Baruch_Espinoza",
+      teaser:
+        "Expulso da sinagoga aos 23 anos, identificou Deus com a natureza e fez da liberdade de pensar a finalidade do Estado.",
+      sources: [
+        { title: "Baruch Spinoza", language: "inglês", url: "https://en.wikipedia.org/wiki/Baruch_Spinoza" },
+        { title: "Baruch Espinoza", language: "português", url: "https://pt.wikipedia.org/wiki/Baruch_Espinoza" }
+      ],
       image: {
         file: "espinosa.jpg",
         author: "Autor anônimo",

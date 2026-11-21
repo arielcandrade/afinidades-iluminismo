@@ -83,9 +83,66 @@ test("toda imagem existe e tem autor, licença e fonte", function () {
   });
 });
 
-test("personalidades.html está atualizado em relação aos dados", function () {
-  var current = fs.readFileSync(build.output, "utf8");
-  assert(current === build.render(), "rode node scripts/build-personalidades.js");
+var CONTENT_DIR = path.join(__dirname, "..", "content", "personalidades");
+var SECTIONS = ["Vida", "Ideias centrais", "Obras principais", "Por que pertence", "Legado"];
+
+function withArticle() {
+  return figures.filter(function (figure) {
+    return build.articleSource(figure);
+  });
+}
+
+test("todo texto em content/personalidades corresponde a uma personalidade", function () {
+  var ids = figures.map(function (figure) {
+    return figure.id;
+  });
+  fs.readdirSync(CONTENT_DIR).forEach(function (file) {
+    assert(/\.md$/.test(file), "arquivo inesperado: " + file);
+    assert(ids.indexOf(file.replace(/\.md$/, "")) !== -1, file + " não corresponde a nenhum id");
+  });
+  assert(withArticle().length > 0, "nenhum texto encontrado");
+});
+
+test("textos têm as cinco seções, na ordem, e cabem em duas páginas", function () {
+  withArticle().forEach(function (figure) {
+    var source = build.articleSource(figure);
+    var headings = source.match(/^## .+$/gm).map(function (line) {
+      return line.slice(3);
+    });
+    assert(headings.length === SECTIONS.length, figure.id + " tem " + headings.length + " seções");
+    SECTIONS.forEach(function (section, index) {
+      assert(headings[index].indexOf(section) === 0, figure.id + ": seção " + (index + 1) + " deveria ser " + section);
+    });
+    var count = words(source.replace(/^## .+$/gm, "").replace(/^- /gm, ""));
+    assert(count >= 800 && count <= 1100, figure.id + " tem " + count + " palavras");
+  });
+});
+
+test("textos têm chamada para o cartão e fontes da Wikipédia", function () {
+  withArticle().forEach(function (figure) {
+    assert(typeof figure.teaser === "string", figure.id + " sem chamada");
+    var count = words(figure.teaser);
+    assert(count >= 10 && count <= 35, figure.id + " tem chamada com " + count + " palavras");
+    assert(Array.isArray(figure.sources) && figure.sources.length >= 1, figure.id + " sem fontes");
+    figure.sources.forEach(function (source) {
+      assert(/^https:\/\/(pt|en)\.wikipedia\.org\/wiki\//.test(source.url), figure.id + ": fonte inesperada " + source.url);
+      assert(source.title && source.language, figure.id + ": fonte sem título ou idioma");
+    });
+  });
+});
+
+test("o Markdown dos textos vira seções, listas e itálico", function () {
+  var html = build.renderMarkdown("## Obras principais\n\nUm *livro*\nem duas linhas.\n\n- *A* (1670): x\n- B").join("\n");
+  assert(html.indexOf('<h2 id="obras-principais">Obras principais</h2>') !== -1, "título mal convertido");
+  assert(html.indexOf("<p>Um <em>livro</em> em duas linhas.</p>") !== -1, "parágrafo mal convertido");
+  assert(html.indexOf("<li><em>A</em> (1670): x</li>") !== -1 && html.indexOf("<li>B</li>") !== -1, "lista mal convertida");
+});
+
+test("páginas geradas estão atualizadas em relação aos dados", function () {
+  build.pages().forEach(function (page) {
+    assert(fs.existsSync(page.file), path.basename(page.file) + " não existe");
+    assert(fs.readFileSync(page.file, "utf8") === page.html, path.basename(page.file) + ": rode node scripts/build-personalidades.js");
+  });
 });
 
 console.log(passed + " testes de personalidades passaram.");

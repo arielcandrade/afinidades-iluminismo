@@ -30,11 +30,12 @@ Cada reação carrega uma posição (−2 a +2) em dois ou três eixos; a mais p
 
 ## Página de personalidades
 
-`personalidades.html` apresenta seis personalidades de cada corrente, com retrato, datas, origem, resumo, obras principais e link para o verbete da Wikipédia em português. A página é HTML estático, gerado a partir de `js/data/figures.js` e `js/data/profiles.js`; não edite o HTML à mão.
+`personalidades.html` apresenta seis personalidades de cada corrente, com retrato, datas, origem, resumo, obras principais e link para o verbete da Wikipédia em português, ou, quando já existe, uma chamada e o link para o texto completo da personalidade. As páginas são HTML estático, geradas a partir de `js/data/figures.js`, `js/data/profiles.js` e `content/personalidades/`; não edite o HTML à mão.
 
 1. Edite `js/data/figures.js`. Os resumos são textos próprios escritos a partir dos verbetes; não copie frases da Wikipédia (CC BY-SA 4.0).
 2. Para um retrato novo, use imagem em domínio público ou CC0 do Wikimedia Commons, reduzida para 320 px de largura, em `img/personalidades/<id>.jpg`, e registre autor, licença e página de origem em `image`.
-3. Regenere a página e rode o teste, que também acusa HTML desatualizado:
+3. Para um texto completo, crie `content/personalidades/<id>.md` e acrescente `teaser` (chamada de uma ou duas linhas para o cartão) e `sources` (verbetes consultados) à personalidade em `figures.js`. O script gera `personalidades/<id>.html`, e o cartão passa a mostrar a chamada e o botão "Ler o texto". O texto usa as seções `## Vida`, `## Ideias centrais`, `## Obras principais`, `## Por que pertence ao <grupo>` e `## Legado`, nessa ordem, com 800 a 1.100 palavras, para caber em duas páginas impressas. O Markdown aceito é simples: títulos `##`, parágrafos separados por linha em branco, listas com `- ` e `*itálico*`.
+4. Regenere as páginas e rode o teste, que também acusa HTML desatualizado:
 
 ```sh
 node scripts/build-personalidades.js
@@ -68,6 +69,8 @@ node scripts/generate-blueprint.js > docs/matriz-de-conteudo.md
 ```text
 index.html
 personalidades.html     gerado por scripts/build-personalidades.js
+personalidades/         textos completos, um por personalidade (gerados)
+content/personalidades/ fonte dos textos completos, em Markdown
 css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato", personalidades
 img/personalidades/     30 retratos do Wikimedia Commons
 js/
