@@ -20,13 +20,26 @@ Acesse `http://localhost:8000`. Para publicação, basta servir a pasta em qualq
 2. **24 situações**, uma por tela — situação curta e cinco reações. A pessoa marca a **mais próxima** e a **mais distante**. Cada reação nomeia um custo; não há alternativa obviamente correta.
 3. **4 situações em dois tempos** — depois da primeira escolha, aparece um **novo fato** e a pessoa decide de novo entre cinco reações reformuladas.
 4. **9 tensões**, três por tela — duas posições e uma escala de cinco pontos.
-5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis; "Como ler"; botões Imprimir, Copiar respostas (JSON) e Refazer.
+5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis, cada um com link para as personalidades do grupo; "Como ler"; botões Imprimir, Copiar respostas (JSON) e Refazer, que pede confirmação antes de apagar.
 
 Duração prevista: cerca de 25 minutos. Ordem de situações e reações sorteada a cada sessão.
 
 ## Pontuação, em uma frase
 
 Cada reação carrega uma posição (−2 a +2) em dois ou três eixos; a mais próxima soma, a mais distante subtrai; as tensões pontuam direto no eixo; a posição resultante nos nove eixos é comparada por cosseno com o vetor de cada corrente e levada a 0–100. O intervalo vem de reamostragem dos itens respondidos (bootstrap, 300 vezes, semente derivada das respostas). Detalhes em `docs/validacao.md`.
+
+## Página de personalidades
+
+`personalidades.html` apresenta seis personalidades de cada corrente, com retrato, datas, origem, resumo, obras principais e link para o verbete da Wikipédia em português. A página é HTML estático, gerado a partir de `js/data/figures.js` e `js/data/profiles.js`; não edite o HTML à mão.
+
+1. Edite `js/data/figures.js`. Os resumos são textos próprios escritos a partir dos verbetes; não copie frases da Wikipédia (CC BY-SA 4.0).
+2. Para um retrato novo, use imagem em domínio público ou CC0 do Wikimedia Commons, reduzida para 320 px de largura, em `img/personalidades/<id>.jpg`, e registre autor, licença e página de origem em `image`.
+3. Regenere a página e rode o teste, que também acusa HTML desatualizado:
+
+```sh
+node scripts/build-personalidades.js
+node tests/figures.test.js
+```
 
 ## Documentação
 
@@ -54,18 +67,21 @@ node scripts/generate-blueprint.js > docs/matriz-de-conteudo.md
 
 ```text
 index.html
-css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato"
+personalidades.html     gerado por scripts/build-personalidades.js
+css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato", personalidades
+img/personalidades/     30 retratos do Wikimedia Commons
 js/
   namespace.js
   scoring.js            cargas por eixo, normalização, cosseno, bootstrap, leituras, verificações
-  storage.js            progresso opcional em localStorage (chave própria da v3)
+  storage.js            progresso em localStorage por 48 horas (chave própria da v3)
   app.js                capa, cenários, dois tempos, tensões, resultado
   data/
     axes.js             nove eixos com polos
     profiles.js         cinco perfis com vetor nos nove eixos
     items.js            24 cenários, 4 em dois tempos, 9 tensões
-tests/                  scoring.test.js, storage.test.js, scoring.test.html
-scripts/                simulate.js, generate-blueprint.js
+    figures.js          trinta personalidades, seis por perfil
+tests/                  scoring.test.js, storage.test.js, figures.test.js, scoring.test.html
+scripts/                simulate.js, generate-blueprint.js, build-personalidades.js
 docs/                   modelo-conceitual.md, matriz-de-conteudo.md, validacao.md
 ```
 

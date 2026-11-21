@@ -1167,6 +1167,9 @@
       ideas.appendChild(element("li", "", idea));
     });
     body.appendChild(ideas);
+    var more = element("a", "profile-more", "Conhecer as personalidades deste grupo");
+    more.href = "personalidades.html#" + profile.id;
+    body.appendChild(more);
     card.appendChild(body);
     return card;
   }
