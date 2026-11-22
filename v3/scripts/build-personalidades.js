@@ -1,7 +1,9 @@
 "use strict";
 
 // Gera personalidades.html a partir de js/data/profiles.js e js/data/figures.js,
-// e uma página personalidades/<id>.html para cada texto em content/personalidades/<id>.md.
+// uma página personalidades/<id>.html para cada texto em content/personalidades/<id>.md,
+// uma página grupos/<id>.html para cada texto em content/grupos/<id>.md
+// e o guia eixos.html a partir de content/eixos.md.
 // Uso: node scripts/build-personalidades.js
 
 var fs = require("fs");
@@ -17,6 +19,8 @@ var CONTENT_DIR = path.join(ROOT, "content", "personalidades");
 var ARTICLE_DIR = path.join(ROOT, "personalidades");
 var GROUP_CONTENT_DIR = path.join(ROOT, "content", "grupos");
 var GROUP_DIR = path.join(ROOT, "grupos");
+var GUIDE_SOURCE = path.join(ROOT, "content", "eixos.md");
+var GUIDE_OUTPUT = path.join(ROOT, "eixos.html");
 
 function escapeHtml(value) {
   return String(value)
@@ -197,7 +201,8 @@ function render() {
       '<section class="screen figure-intro">',
       '  <p class="eyebrow">Afinidades com o Iluminismo</p>',
       '  <h1 class="display" id="topo" tabindex="-1">Personalidades do Iluminismo</h1>',
-      '  <p class="lead">Seis figuras de cada uma das cinco correntes do questionário: quem foram, o que defenderam e por que pertencem ao grupo.</p>'
+      '  <p class="lead">Seis figuras de cada uma das cinco correntes do questionário: quem foram, o que defenderam e por que pertencem ao grupo.</p>',
+      '  <p class="figure-guide"><a href="eixos.html">Como ler os nove eixos do resultado</a></p>'
     ])
     .concat(indent(renderNav(), 2).split("\n"))
     .concat(["</section>"]);
@@ -236,7 +241,7 @@ function renderShell(options) {
     '    <header class="masthead">',
     '      <a class="brand" href="' + (base || "./") + '">',
     '        <span class="brand-title">Afinidades com o Iluminismo</span>',
-    '        <span class="brand-sub">personalidades · voltar ao questionário</span>',
+    '        <span class="brand-sub">' + escapeHtml(options.brandSub || "personalidades") + " · voltar ao questionário</span>",
     "      </a>",
     "    </header>",
     "",
@@ -352,8 +357,53 @@ function renderGroupPage(profile) {
   });
 }
 
+function guideSource() {
+  return fs.readFileSync(GUIDE_SOURCE, "utf8");
+}
+
+function renderGuideNav(source) {
+  var items = source
+    .split("\n")
+    .filter(function (line) {
+      return line.indexOf("## ") === 0;
+    })
+    .map(function (line) {
+      var title = line.slice(3).trim();
+      return '<li><a href="#' + slug(title) + '">' + renderInline(title) + "</a></li>";
+    });
+  return ['<nav class="guide-nav" aria-label="Seções do guia">', "  <ol>"]
+    .concat(indent(items, 4).split("\n"))
+    .concat(["  </ol>", "</nav>"]);
+}
+
+function renderGuide() {
+  var source = guideSource();
+  var body = [
+    '<p class="figure-back"><a href="./">← Voltar ao questionário</a></p>',
+    '<header class="group-head">',
+    '  <p class="eyebrow">Guia do resultado</p>',
+    '  <h1 class="display" id="topo">Como ler os nove eixos</h1>',
+    '  <p class="lead">O que cada eixo mede, o que significa ficar perto de uma ponta ou do centro e como as nove posições formam a afinidade com as cinco correntes do Iluminismo.</p>',
+    "</header>"
+  ]
+    .concat(renderGuideNav(source))
+    .concat(['<article class="figure-article" aria-labelledby="topo">'])
+    .concat(indent(renderMarkdown(source), 2).split("\n"))
+    .concat(["</article>", '<p class="figure-top"><a href="#topo">Voltar ao topo</a></p>']);
+
+  return renderShell({
+    base: "",
+    brandSub: "guia dos eixos",
+    title: "Como ler os nove eixos · Afinidades com o Iluminismo",
+    description: "Guia para professores e participantes: o que cada um dos nove eixos do questionário mede e como interpretar o centro e as pontas de cada régua.",
+    screen: "figure",
+    mainClass: "page figure-article-page",
+    body: body
+  });
+}
+
 function pages() {
-  var list = [{ file: OUTPUT, html: render() }];
+  var list = [{ file: OUTPUT, html: render() }, { file: GUIDE_OUTPUT, html: renderGuide() }];
   figures.forEach(function (figure) {
     if (articleSource(figure)) {
       list.push({ file: articleOutput(figure), html: renderArticle(figure) });
@@ -380,7 +430,7 @@ if (require.main === module) {
   var articles = figures.filter(articleSource).length;
   console.log(
     "personalidades.html gerado com " + figures.length + " personalidades, " + articles + " texto(s) completo(s) e " +
-      (written.length - 1 - articles) + " página(s) de grupo."
+      (written.length - 2 - articles) + " página(s) de grupo; eixos.html gerado."
   );
 }
 
@@ -390,5 +440,6 @@ module.exports = {
   pages: pages,
   articleSource: articleSource,
   groupSource: groupSource,
+  guideSource: guideSource,
   renderMarkdown: renderMarkdown
 };

@@ -1269,6 +1269,38 @@ a {
   margin: 0.75rem 0 0;
 }
 
+.figure-guide {
+  margin: 1rem 0 0;
+}
+
+.figure-guide a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+.guide-nav ol {
+  margin: 1.25rem 0 0;
+  padding: 0 0 1.25rem 1.5rem;
+  columns: 2 14rem;
+  column-gap: 2rem;
+  border-bottom: 1px solid var(--ink-faint);
+  font-size: 0.95rem;
+}
+
+.guide-nav li {
+  margin-bottom: 0.3rem;
+  break-inside: avoid;
+}
+
+.guide-nav a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+.figure-article h2 {
+  scroll-margin-top: 1rem;
+}
+
 .figure-article a {
   color: var(--accent);
   text-underline-offset: 0.2em;
@@ -1349,6 +1381,8 @@ a {
   .profile-toggle,
   .profile-links,
   .figure-nav,
+  .guide-nav,
+  .figure-guide,
   .figure-top,
   .figure-back,
   .figure-read,

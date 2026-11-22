@@ -1,0 +1,190 @@
+## Para que serve este guia
+
+O resultado do questionário mostra nove réguas. Cada régua é um eixo: uma pergunta sobre como decidir questões comuns, com duas respostas possíveis nas pontas. Este guia explica o que cada eixo mede, o que significa ficar perto de uma ponta ou do centro e como as nove posições se combinam para formar a afinidade com as cinco correntes do Iluminismo. Foi escrito para quem vai conduzir a conversa sobre os resultados, mas qualquer participante pode lê-lo.
+
+Uma ideia deve ficar clara antes de tudo: nenhum polo é o lado certo. Cada ponta de cada eixo foi defendida por pensadores sérios do século XVIII e continua a ter bons argumentos hoje. As situações do questionário foram escritas para que toda reação tenha um custo, e a régua descreve qual custo a pessoa tende a aceitar, não quanto ela acertou.
+
+## Como a posição é calculada
+
+Cada uma das 28 situações oferece cinco reações, uma inspirada em cada corrente. Cada reação carrega uma posição em dois ou três eixos, numa escala de −2 a +2. Quando a pessoa marca uma reação como a mais próxima da sua, a posição dessa reação é somada; quando a marca como a mais distante, a posição é subtraída. Rejeitar também informa: quem marca como mais distante uma reação de ruptura imediata é empurrado para o gradualismo, mesmo que a reação escolhida como mais próxima não trate de ritmo.
+
+Em quatro situações, um fato novo aparece e a pessoa decide de novo. A segunda decisão conta como mais um item. O resultado informa quantas vezes a pessoa manteve a mesma reação, mas esse número é só uma leitura e não entra no cálculo. Por fim, as nove tensões finais, uma por eixo, pedem que a pessoa se coloque entre duas frases numa escala de cinco pontos e pontuam diretamente no eixo correspondente.
+
+Cada eixo recebe, assim, cerca de dez contribuições: oito situações, uma situação em dois tempos e uma tensão final. A Fonte do juízo aparece em três das situações em dois tempos, e o Papel da publicidade, em duas. A soma de cada eixo é dividida pelo máximo que seria possível obter nele, o que dá um número entre −1 e +1. É esse número que a régua desenha: −1 na ponta esquerda, 0 no centro e +1 na ponta direita. Nenhuma resposta sozinha define a posição: a maior contribuição possível de um item equivale a cerca de um décimo do caminho entre o centro e a ponta.
+
+## Como ler a régua
+
+Na tela de resultado, o ponto cheio é a pessoa e o círculo vazio é a corrente com maior afinidade. A posição das correntes vem da matriz do questionário: uma corrente com valor −2 ou +2 num eixo aparece na ponta da régua; com −1 ou +1, a meio caminho entre o centro e a ponta; com 0, no centro.
+
+Nas leituras escritas do resultado, e para quem usa leitor de tela, a posição é descrita em palavras, segundo faixas fixas:
+
+- “no meio”: a menos de 0,15 do centro, ou seja, o ponto cai a menos de 7,5% da largura da régua para qualquer lado;
+- “um pouco para”: de 0,15 a 0,4;
+- “claramente para”: de 0,4 a 0,7;
+- “fortemente para”: 0,7 ou mais.
+
+Chegar a “fortemente” exige ter escolhido quase sempre, naquele eixo, a reação mais extrema e rejeitado a oposta. É raro e não indica rigidez: quer dizer que, nas situações propostas, o critério daquele eixo prevaleceu sobre os outros. A régua também não mede o quanto a pessoa se importa com o tema, e sim para que lado suas escolhas pesaram quando o tema estava em jogo.
+
+Abaixo das réguas, três leituras ajudam a interpretar os eixos. “Onde você se parece e onde se afasta” aponta os dois eixos em que a pessoa mais se aproxima da corrente principal, entre aqueles em que essa corrente tem posição marcada, e o eixo em que mais se afasta dela, quando a diferença passa de 0,3. “A tensão que você carrega” mostra o eixo em que as escolhas mais oscilaram, desde que pelo menos um quarto delas tenha ido para o polo contrário ao das demais. “Convicção” resume a distância média até o centro nos nove eixos: abaixo de 0,25, as posições ficaram perto do centro na maioria dos eixos; entre 0,25 e 0,5, ficaram definidas, sem extremos; acima disso, ficaram marcadas.
+
+## O que significa ficar no centro
+
+O centro é a posição que mais pede cuidado na conversa, porque pode significar coisas bem diferentes. Há pelo menos três leituras possíveis, e só a própria pessoa pode dizer qual se aplica a ela.
+
+*Equilíbrio.* A pessoa escolheu de forma consistente reações moderadas naquele eixo, ou rejeitou com a mesma frequência as duas pontas. É uma posição própria: a de quem acha que os dois polos têm razão em parte e procura combiná-los.
+
+*Decisão caso a caso.* A pessoa foi para uma ponta em algumas situações e para a outra em outras, e as escolhas se anularam na soma. Aqui o centro não é moderação, é dependência do contexto: o que decide é a situação concreta, e não uma regra geral. Quando isso acontece de forma marcada, o eixo aparece em “A tensão que você carrega”. Uma boa pergunta para a conversa é o que havia de diferente nas situações em que a pessoa foi para cada lado.
+
+*Pouca importância.* O eixo pesou pouco nas escolhas: outras considerações decidiram, e as reações escolhidas ficaram neutras nele. Isso também acontece com as correntes históricas. Os escoceses ficam no centro da Direção da mudança não por indecisão, mas porque, para eles, a pergunta relevante não era quem decide, e sim se a mudança respeita o que a experiência já testou.
+
+Ficar no centro, portanto, não é “não ter opinião” nem errar o questionário. Mas quem fica perto do centro em quase todos os eixos deve receber o índice de afinidade com mais cautela, como se explica no fim deste guia.
+
+## Fonte do juízo
+
+*A pergunta.* Quando decide, você parte de um princípio ou do que a experiência mostrou?
+
+*Perto de “Princípio”.* Antes de olhar o caso, a pessoa procura a regra que deveria valer para qualquer caso semelhante e aceita segui-la mesmo quando os resultados práticos são incertos. O risco que aceita é o de aplicar uma boa regra a uma situação que ela não previa.
+
+*Perto de “Experiência”.* A pessoa pergunta primeiro o que já funcionou, como costumes e tentativas anteriores resolveram o problema, e prefere ajustar o que existe a deduzir uma solução nova. O risco que aceita é o de repetir uma prática só porque é conhecida.
+
+*No centro,* usa princípios e experiência como controles um do outro, ou muda de critério conforme o tipo de problema.
+
+*As correntes.* A Aufklärung está na ponta do princípio: Kant fundou a moral e o direito em princípios anteriores à experiência, e Wolff construiu sistemas dedutivos. Os escoceses estão na ponta da experiência: para Hume, até a crença em causa e efeito repousa no hábito. O Iluminismo Radical pende ao princípio, pela confiança numa razão capaz de desmontar tradições. Philosophes e Despotismo Esclarecido ficam no centro: os primeiros admiravam Locke e Newton, mas argumentavam por princípios de tolerância; os segundos combinavam razão de Estado com cadastros e censos.
+
+*Cuidado.* Princípio não é teimosia, e experiência não é falta de valores. Manter a mesma reação diante de um fato novo, nas situações em dois tempos, também não equivale a ficar do lado do princípio: o questionário registra esse número à parte.
+
+## Religião na vida pública
+
+*A pergunta.* A religião deve ficar fora das decisões públicas ou pode ter lugar nelas?
+
+*Perto de “Laicidade”.* Decisões que valem para todos devem se justificar com razões que qualquer pessoa possa aceitar, sem apoio em crenças religiosas, e instituições religiosas não devem ter autoridade civil.
+
+*Perto de “Acomodação”.* As crenças religiosas fazem parte da vida comum e podem ter nela um lugar reconhecido, em datas, espaços ou no apoio a quem precisa. Retirá-las à força parece mais arriscado do que conviver com elas.
+
+*No centro,* aceita a presença da religião em alguns campos e não em outros, ou a trata pelo que ela ajuda ou atrapalha na ordem pública.
+
+*As correntes.* O Iluminismo Radical está na ponta da laicidade: para Espinosa, Bayle e d'Holbach, a moral não depende de revelação, e o historiador Jonathan Israel vê nisso o traço mais distintivo do grupo. Os Philosophes pendem à laicidade: anticlericais, mas em geral deístas, viam utilidade numa religião “razoável”. Escoceses e Aufklärung pendem à acomodação: os primeiros conviveram com os pastores moderados da Igreja da Escócia, os segundos buscaram uma religião depurada pela razão. O Despotismo Esclarecido fica no centro: fechou conventos e expulsou jesuítas, mas manteve a religião de Estado como instrumento de ordem.
+
+*Cuidado.* Laicidade não é ateísmo nem hostilidade à fé: muitos defensores da separação foram religiosos. Acomodação não é teocracia: é dar lugar à religião, e não submeter a ela as decisões. As reações carregam este eixo com valores menores que os outros, e por isso o máximo possível é mais baixo: cada escolha pesa um pouco mais nele.
+
+## Direção da mudança
+
+*A pergunta.* Mudanças vêm de quem governa ou de quem é governado?
+
+*Perto de “De cima”.* Quem tem responsabilidade, preparo e informação deve decidir e executar, mesmo sem consenso, porque esperar a concordância de todos pode significar não mudar nada ou mudar tarde demais.
+
+*Perto de “De baixo”.* Quem vive a situação deve discutir e decidir; uma mudança imposta, ainda que boa, perde legitimidade e tende a não durar.
+
+*No centro,* aceita que a iniciativa venha de qualquer lado, desde que o processo seja razoável, ou considera que a pergunta importante é outra.
+
+*As correntes.* O Despotismo Esclarecido está na ponta de cima, e a fórmula associada ao período, “tudo para o povo, nada pelo povo”, resume o grupo. O Iluminismo Radical está na ponta de baixo, com a soberania popular e o direito de resistência. Os Philosophes pendem para baixo: apostavam na opinião pública, mas cortejavam soberanos, como Voltaire em Potsdam e Diderot em São Petersburgo. Escoceses e Aufklärung ficam no centro: os primeiros viam as instituições mudarem por acúmulo de práticas, nem por decreto nem por assembleia; Kant defendia a liberdade de argumentar em público e a obediência ao soberano.
+
+*Cuidado.* “De cima” não é sinônimo de autoritarismo: pode ser confiança num corpo técnico ou numa direção eleita. “De baixo” não é recusa de especialistas, e sim a ideia de que a decisão final cabe a quem será afetado.
+
+## Ritmo da mudança
+
+*A pergunta.* O que está errado deve acabar de uma vez ou mudar aos poucos?
+
+*Perto de “Ruptura”.* Quando algo é injusto, cada dia a mais tem um custo para quem sofre, e reformas parciais tendem a preservar o essencial do problema. A pessoa aceita o custo de mudar tudo de uma vez.
+
+*Perto de “Gradualismo”.* Mudanças em etapas permitem corrigir erros, preservam o que ainda funciona e evitam consequências que ninguém previu. A pessoa aceita o custo de conviver mais tempo com o que está errado.
+
+*No centro,* distingue casos em que a urgência justifica a ruptura de casos em que convém ir por etapas.
+
+*As correntes.* Os escoceses estão na ponta do gradualismo: Hume e Smith desconfiavam de reconstruções súbitas, e Ferguson insistia nas consequências que ninguém planejou. O Iluminismo Radical está na ponta da ruptura: privilégios e dogmas não se reformam, substituem-se, e Paine escreveu que estava ao alcance dos americanos recomeçar o mundo. O Despotismo Esclarecido pende à ruptura, com reformas por decreto, rápidas e em bloco, como as de José II. Philosophes e Aufklärung pendem ao gradualismo: reforma, e não revolução.
+
+*Cuidado.* Gradualismo não é conservadorismo: os escoceses queriam mudar muito, só que aos poucos. Ruptura não é violência: pode ser uma decisão legal tomada de uma só vez. Despotismo e Radical ficam do mesmo lado deste eixo por razões opostas: um rompe de cima, o outro de baixo.
+
+## Última palavra
+
+*A pergunta.* Quando a maioria quer uma coisa e um princípio diz outra, quem vence?
+
+*Perto de “Direitos e princípios”.* Há regras que valem mesmo contra a maioria: direitos que nenhuma votação pode retirar e princípios que protegem minorias e indivíduos. A pessoa aceita que, às vezes, a vontade da maioria seja contrariada.
+
+*Perto de “Vontade coletiva”.* A decisão do grupo é a última palavra, e direitos colocados acima de qualquer decisão coletiva costumam esconder privilégios de quem os define. A pessoa aceita o risco de a maioria errar.
+
+*No centro,* admite alguns limites à maioria, mas poucos, ou acha que a autoridade vem de outra fonte, como a utilidade ou o costume.
+
+*As correntes.* A Aufklärung está na ponta dos princípios: o imperativo categórico e o direito racional não se votam. O Iluminismo Radical está na ponta da vontade coletiva. Os Philosophes pendem aos princípios: defendiam a tolerância e a liberdade de expressão contra maiorias intolerantes, embora fizessem da opinião pública um tribunal. Escoceses e Despotismo ficam no centro, por razões diferentes: Hume criticava os direitos naturais abstratos sem defender a vontade popular, e, para o déspota esclarecido, a última palavra não cabia nem ao princípio nem à maioria, e sim ao soberano.
+
+*Cuidado.* Este eixo não é o mesmo que a Direção da mudança. Uma pessoa pode querer que as mudanças venham de baixo e, ainda assim, defender direitos que a maioria não pode tocar. É a combinação das duas réguas que diz mais.
+
+## Origem da boa ordem
+
+*A pergunta.* Coisas boas resultam de um plano ou de ajustes que ninguém planejou?
+
+*Perto de “Desenho deliberado”.* Uma boa ordem se constrói: alguém precisa pensar o conjunto, fixar objetivos, escrever as regras e coordenar a execução. Deixar as coisas se ajustarem sozinhas tende a favorecer os mais fortes.
+
+*Perto de “Ordem espontânea”.* Muito do que funciona no mundo social, como mercados, línguas e costumes, resulta de milhares de decisões e ajustes que ninguém desenhou, e planos que tentam substituir esses processos costumam ignorar o que só quem está envolvido sabe.
+
+*No centro,* combina planejamento com espaço para ajuste, ou planeja algumas partes e deixa outras evoluírem.
+
+*As correntes.* Os escoceses estão na ponta da ordem espontânea, e esse é o traço que define o grupo, da “mão invisível” de Smith à fórmula de Ferguson, para quem as instituições resultam da ação humana, mas não de um plano humano. O Despotismo Esclarecido está na ponta do desenho: o Estado planeja, codifica e executa. Aufklärung e Radical pendem ao desenho: Kant pensava a constituição como projeto racional, e os radicais queriam construir por decisão consciente uma sociedade justa. Os Philosophes ficam no centro: admiravam a ordem natural descrita por Newton, mas a *Encyclopédie* foi um projeto deliberado de organizar o saber.
+
+*Cuidado.* Ordem espontânea não é “cada um por si” nem rejeição de regras: os escoceses defendiam leis, tribunais e instituições, mas achavam que as melhores nasciam de longos processos. Desenho deliberado não é necessariamente centralização: um plano pode ser feito em assembleia.
+
+## Alcance das regras
+
+*A pergunta.* Uma boa regra vale em qualquer lugar ou depende de cada lugar?
+
+*Perto de “Universal”.* O que é certo aqui é certo em qualquer lugar, e tratar casos iguais de forma diferente conforme o lugar abre espaço para privilégios e exceções. A pessoa aceita o risco de impor uma regra que não se ajusta a certas realidades.
+
+*Perto de “Local”.* Cada lugar tem história, costumes e necessidades próprias, e regras que funcionam num lugar podem fracassar em outro. A pessoa aceita o risco de tolerar diferenças que talvez fossem injustas.
+
+*No centro,* defende alguns mínimos universais e deixa o resto a cada lugar.
+
+*As correntes.* A Aufklärung está na ponta universal: para Kant, a lei moral vale para todo ser racional, e a paz perpétua era um projeto cosmopolita. Herder, que valorizava a singularidade de cada povo, é a grande exceção dentro do grupo. Os escoceses estão na ponta local: explicavam as instituições pela história de cada sociedade. Radical e Despotismo pendem ao universal, os primeiros pelos direitos do homem, os segundos pelos códigos uniformes que valiam para todo o território, contra privilégios regionais. Os Philosophes ficam no centro: Voltaire e Condorcet eram universalistas, mas Montesquieu ensinou que as leis dependem do clima, dos costumes e da história de cada povo.
+
+*Cuidado.* Local não é relativismo moral, e universal não é desprezo pelas diferenças. Despotismo e Radical, opostos em quase tudo, ficam do mesmo lado aqui: uniformizar pode servir tanto à igualdade quanto ao controle central.
+
+## Motor da moral
+
+*A pergunta.* Agir bem é cumprir um dever ou responder ao que se sente e ao que faz bem?
+
+*Perto de “Dever e razão”.* Agir bem é fazer o que a razão manda, mesmo quando isso contraria a inclinação ou não traz bons resultados imediatos: cumprir a promessa, dizer a verdade, respeitar a regra. O valor do ato está no motivo, e não na consequência.
+
+*Perto de “Sentimento e utilidade”.* Agir bem é responder à compaixão, à simpatia pelos outros e ao que de fato melhora a vida das pessoas; uma regra que produz sofrimento evitável perde a razão de ser.
+
+*No centro,* leva em conta deveres e consequências, ou pesa um ou outro conforme o caso.
+
+*As correntes.* A Aufklärung está na ponta do dever: para Kant, só tem valor moral o que se faz por dever, e não por inclinação. Os escoceses estão na ponta do sentimento: Hutcheson falava de um senso moral; Hume, de sentimento; Smith, de simpatia. Philosophes e Radical pendem ao sentimento e à utilidade: Helvétius e d'Holbach fundavam a moral no interesse e na felicidade. O Despotismo Esclarecido fica no centro: seu critério era a utilidade pública administrada pelo Estado, sem uma teoria moral própria.
+
+*Cuidado.* “Sentimento” aqui não é capricho: é a ideia de que a moral nasce de reações humanas compartilhadas, como a compaixão. E “dever” não é obediência a ordens: para Kant, o dever é a lei que a própria razão se dá.
+
+## Papel da publicidade
+
+*A pergunta.* Decisões delicadas se resolvem com discrição ou à vista de todos? A palavra “publicidade” tem aqui o sentido antigo de tornar público, e não o de propaganda.
+
+*Perto de “Discrição”.* Assuntos delicados se resolvem entre quem tem responsabilidade, longe de uma exposição que acirra conflitos, expõe pessoas e transforma problemas técnicos em disputas de opinião.
+
+*Perto de “Publicidade”.* O que afeta a todos deve ser exposto e debatido abertamente: o segredo protege erros e abusos, e a opinião pública informada é o melhor controle.
+
+*No centro,* defende a transparência em geral, com exceções para proteger pessoas ou negociações.
+
+*As correntes.* Os Philosophes estão na ponta da publicidade, que é o seu traço definidor, da *Encyclopédie* à campanha de Voltaire no caso Calas. O Despotismo Esclarecido está na ponta da discrição: reformas preparadas em gabinete e anunciadas prontas, sob censura. Aufklärung e Radical pendem à publicidade: Kant defendia o uso público da razão, mas dentro da obediência civil, e os radicais usavam panfletos e a imprensa como arma. Os escoceses ficam no centro: defendiam a liberdade de imprensa, mas esperavam a mudança do hábito e do comércio, e não da exposição pública.
+
+*Cuidado.* Discrição não é censura nem desonestidade: pode ser o cuidado de proteger alguém exposto. Publicidade não é espetáculo: é a exigência de que as razões de uma decisão possam ser examinadas por todos.
+
+## Dos eixos aos perfis
+
+A afinidade com cada corrente não é calculada eixo por eixo. O questionário compara o conjunto das nove posições da pessoa com o conjunto das nove posições de cada corrente e mede o quanto os dois apontam na mesma direção. Em termos técnicos, é o cosseno entre dois vetores; em termos práticos, é a semelhança do padrão. O índice vai de 0 a 100: 100 é o mesmo padrão, 50 é nenhuma relação e 0 é o padrão oposto. Não é percentual de concordância nem probabilidade.
+
+Dessa forma de cálculo saem algumas consequências que vale explicar.
+
+*O padrão importa mais que a intensidade.* Duas pessoas com posições na mesma direção, uma forte e outra fraca, podem ter o mesmo índice. Por isso alguém de posições moderadas pode ter afinidade alta com uma corrente que, nas réguas, aparece bem mais extrema.
+
+*Réguas diferentes podem dar o mesmo perfil.* Uma pessoa pode ficar longe da corrente principal num eixo e, ainda assim, ter afinidade alta com ela, se nos demais o padrão for parecido. A leitura “Onde você se parece e onde se afasta” serve justamente para mostrar isso.
+
+*Cada corrente tem uma assinatura.* Algumas posições definem um grupo mais do que outras:
+
+- Philosophes: publicidade na ponta, com inclinação à laicidade, aos direitos e à mudança de baixo; ficam no centro em vários eixos, o que os torna o perfil mais próximo de todos os outros, como convém ao centro histórico do movimento;
+- Iluminismo Escocês: experiência, gradualismo, ordem espontânea, regras locais e moral do sentimento, todos na ponta;
+- Aufklärung: princípio, regras universais, direitos acima da maioria e moral do dever, todos na ponta;
+- Iluminismo Radical: laicidade, ruptura, vontade coletiva e mudança de baixo, todos na ponta;
+- Despotismo Esclarecido: mudança de cima, desenho deliberado e discrição, todos na ponta.
+
+*O centro enfraquece o índice.* Quando a posição fica perto do centro em quase todos os eixos, pequenas diferenças decidem qual corrente aparece em primeiro lugar, e os índices de várias correntes ficam próximos de 50. Nesses casos, a seção “Convicção” avisa que o índice reflete tendências, e não convicções.
+
+Cada índice vem com um intervalo, desenhado como uma faixa clara atrás da barra. Ele é obtido recalculando o resultado 300 vezes, cada vez com uma amostra sorteada das próprias respostas da pessoa, e mostra a faixa em que caem 80% desses recálculos. Um intervalo largo indica que o índice depende muito de poucas respostas; um estreito, que as respostas apontam de forma consistente para o mesmo lado. Quando o intervalo da primeira corrente se sobrepõe ao da segunda, o resultado anuncia um empate técnico. A ordem entre as duas, então, não deve ser levada a sério, e a conversa rende mais se partir das réguas: em que eixos a pessoa se parece com cada uma, e em que eixos as duas correntes divergem entre si.
+
+Por fim, as posições das correntes são estilizações de movimentos internamente diversos, e um autor concreto pode contradizer a posição do seu grupo. O resultado descreve como a pessoa tendeu a decidir nas situações do questionário. Não é um retrato de quem ela é, e sim um ponto de partida para conversar sobre os custos que cada um aceita ao decidir.

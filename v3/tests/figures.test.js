@@ -202,6 +202,27 @@ test("textos de grupo citam as seis personalidades com links válidos", function
   });
 });
 
+test("guia dos eixos tem uma seção por eixo, na ordem, com os dois polos", function () {
+  var axes = require("../js/data/axes.js");
+  var source = build.guideSource();
+  var headings = source.match(/^## .+$/gm).map(function (line) {
+    return line.slice(3);
+  });
+  var axisHeadings = headings.filter(function (heading) {
+    return axes.some(function (axis) {
+      return axis.name === heading;
+    });
+  });
+  assert(axisHeadings.join("|") === axes.map(function (axis) { return axis.name; }).join("|"), "seções de eixo: " + axisHeadings.join(", "));
+  axes.forEach(function (axis) {
+    var section = source.split("## " + axis.name + "\n")[1].split(/^## /m)[0];
+    [axis.negative.label, axis.positive.label].forEach(function (label) {
+      assert(section.indexOf("*Perto de “" + label + "”.*") !== -1, axis.id + " sem o polo " + label);
+    });
+  });
+  assert(source.indexOf('"') === -1, "o guia tem aspas retas");
+});
+
 test("páginas geradas estão atualizadas em relação aos dados", function () {
   build.pages().forEach(function (page) {
     assert(fs.existsSync(page.file), path.basename(page.file) + " não existe");

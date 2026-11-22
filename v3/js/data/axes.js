@@ -12,7 +12,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  // Oito oposições que atravessam as correntes do Iluminismo. Cada eixo vai de −2
+  // Nove oposições que atravessam as correntes do Iluminismo. Cada eixo vai de −2
   // (polo `negative`) a +2 (polo `positive`). Os perfis são pontos nesse espaço e as
   // reações dos cenários carregam valores em dois ou três eixos.
   // `question` é a pergunta em linguagem cotidiana exibida no resultado.

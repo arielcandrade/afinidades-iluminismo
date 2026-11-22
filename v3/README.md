@@ -20,7 +20,7 @@ Acesse `http://localhost:8000`. Para publicação, basta servir a pasta em qualq
 2. **24 situações**, uma por tela — situação curta e cinco reações. A pessoa marca a **mais próxima** e a **mais distante**. Cada reação nomeia um custo; não há alternativa obviamente correta.
 3. **4 situações em dois tempos** — depois da primeira escolha, aparece um **novo fato** e a pessoa decide de novo entre cinco reações reformuladas.
 4. **9 tensões**, três por tela — duas posições e uma escala de cinco pontos.
-5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis, cada um com links para a página do grupo e para as suas personalidades; "Como ler"; botões Imprimir, Copiar respostas (JSON) e Refazer, que pede confirmação antes de apagar.
+5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis, cada um com links para a página do grupo e para as suas personalidades; "Como ler", com link para o guia dos eixos; botões Imprimir, Copiar respostas (JSON) e Refazer, que pede confirmação antes de apagar.
 
 Duração prevista: cerca de 25 minutos. Ordem de situações e reações sorteada a cada sessão.
 
@@ -42,6 +42,10 @@ Cada reação carrega uma posição (−2 a +2) em dois ou três eixos; a mais p
 node scripts/build-personalidades.js
 node tests/figures.test.js
 ```
+
+## Guia dos eixos
+
+`eixos.html` explica, para professores e participantes, como ler as nove réguas do resultado: como a posição é calculada, as faixas "no meio", "um pouco", "claramente" e "fortemente", os três sentidos de ficar no centro, uma seção por eixo (a pergunta, cada polo, o centro, as correntes e as leituras erradas a evitar) e como os eixos formam a afinidade com os perfis. A fonte é `content/eixos.md`, gerada pelo mesmo script; cada seção de eixo leva o nome do eixo em `js/data/axes.js` e os parágrafos `*Perto de “<polo>”.*`, o que o teste confere. Se mudar faixas, cargas ou vetores, revise o guia.
 
 ## Documentação
 
@@ -74,6 +78,7 @@ personalidades/         textos completos, um por personalidade (gerados)
 content/personalidades/ fonte dos textos completos, em Markdown
 grupos/                 páginas sobre cada corrente (geradas)
 content/grupos/         fonte das páginas de grupo, em Markdown
+eixos.html              guia dos nove eixos (gerado de content/eixos.md)
 css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato", personalidades
 img/personalidades/     30 retratos do Wikimedia Commons
 js/

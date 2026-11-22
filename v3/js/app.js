@@ -1273,6 +1273,11 @@
         "As cinco correntes se sobrepõem em muitos pontos e são recortes de um movimento maior. Uma afinidade alta significa que, nas situações deste questionário, você tende a decidir como aquele grupo decidia."
       )
     );
+    var guide = element("p", "");
+    var guideLink = element("a", "profile-more", "Como ler os nove eixos: o guia completo");
+    guideLink.href = "eixos.html";
+    guide.appendChild(guideLink);
+    howTo.appendChild(guide);
     section.appendChild(howTo);
 
     var resultActions = element("div", "actions actions-result");
