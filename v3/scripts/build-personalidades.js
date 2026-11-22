@@ -161,7 +161,7 @@ function renderCredits() {
   return [
     '<section class="figure-credits" aria-labelledby="creditos-title">',
     '  <h2 class="section-title" id="creditos-title">Fontes e créditos</h2>',
-    "  <p>Os resumos e os textos foram escritos para este site a partir dos verbetes da Wikipédia em português e em inglês. Cada cartão leva ao verbete consultado ou ao texto completo, que lista as próprias fontes. O conteúdo da Wikipédia é distribuído sob a licença " +
+    "  <p>Os textos foram escritos para este site a partir dos verbetes da Wikipédia, sobretudo em inglês e em português. Cada cartão leva a um texto completo, que lista os verbetes consultados. O conteúdo da Wikipédia é distribuído sob a licença " +
       '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>.</p>',
     "  <p>Os retratos vêm do Wikimedia Commons, todos em domínio público ou sob CC0. Foram reduzidos para esta página e, quando indicado, recortados para mostrar o rosto.</p>",
     '  <ul class="figure-credit-list">'

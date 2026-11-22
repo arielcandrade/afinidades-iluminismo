@@ -30,7 +30,7 @@ Cada reação carrega uma posição (−2 a +2) em dois ou três eixos; a mais p
 
 ## Página de personalidades
 
-`personalidades.html` apresenta seis personalidades de cada corrente, com retrato, datas, origem, resumo, obras principais e link para o verbete da Wikipédia em português, ou, quando já existe, uma chamada e o link para o texto completo da personalidade. As páginas são HTML estático, geradas a partir de `js/data/figures.js`, `js/data/profiles.js` e `content/personalidades/`; não edite o HTML à mão.
+`personalidades.html` apresenta seis personalidades de cada corrente, com retrato, datas, origem, uma chamada curta e o botão "Ler o texto". Cada personalidade tem um texto completo em `personalidades/<id>.html`, de até duas páginas impressas, com as fontes consultadas. Sem texto completo, o cartão volta a mostrar resumo, obras principais e link para o verbete da Wikipédia. As páginas são HTML estático, geradas a partir de `js/data/figures.js`, `js/data/profiles.js` e `content/personalidades/`; não edite o HTML à mão.
 
 1. Edite `js/data/figures.js`. Os resumos são textos próprios escritos a partir dos verbetes; não copie frases da Wikipédia (CC BY-SA 4.0).
 2. Para um retrato novo, use imagem em domínio público ou CC0 do Wikimedia Commons, reduzida para 320 px de largura, em `img/personalidades/<id>.jpg`, e registre autor, licença e página de origem em `image`.

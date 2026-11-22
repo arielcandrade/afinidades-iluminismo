@@ -1333,8 +1333,8 @@ a {
   }
 
   .figure-article-head {
-    grid-template-columns: 6rem 1fr;
-    padding-bottom: 1rem;
+    grid-template-columns: 5rem 1fr;
+    padding-bottom: 0.75rem;
   }
 
   .figure-article-page {
@@ -1375,6 +1375,27 @@ a {
   .figure-sources p,
   .figure-sources ul {
     margin: 0 0 0.2rem;
+  }
+
+  .figure-sources ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .figure-sources li {
+    display: inline;
+  }
+
+  .figure-sources li + li::before {
+    content: " · ";
+  }
+
+  [data-screen="figure"] .masthead {
+    padding-top: 0;
+  }
+
+  [data-screen="figure"] .brand-sub {
+    display: none;
   }
 
   .page {

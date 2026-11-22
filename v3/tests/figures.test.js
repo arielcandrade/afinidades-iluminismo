@@ -125,7 +125,7 @@ test("textos têm chamada para o cartão e fontes da Wikipédia", function () {
     assert(count >= 10 && count <= 35, figure.id + " tem chamada com " + count + " palavras");
     assert(Array.isArray(figure.sources) && figure.sources.length >= 1, figure.id + " sem fontes");
     figure.sources.forEach(function (source) {
-      assert(/^https:\/\/(pt|en)\.wikipedia\.org\/wiki\//.test(source.url), figure.id + ": fonte inesperada " + source.url);
+      assert(/^https:\/\/[a-z]{2}\.wikipedia\.org\/wiki\//.test(source.url), figure.id + ": fonte inesperada " + source.url);
       assert(source.title && source.language, figure.id + ": fonte sem título ou idioma");
     });
   });
