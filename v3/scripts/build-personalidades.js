@@ -9,11 +9,14 @@ var path = require("path");
 
 var profiles = require("../js/data/profiles.js");
 var figures = require("../js/data/figures.js");
+var groups = require("../js/data/groups.js");
 
 var ROOT = path.join(__dirname, "..");
 var OUTPUT = path.join(ROOT, "personalidades.html");
 var CONTENT_DIR = path.join(ROOT, "content", "personalidades");
 var ARTICLE_DIR = path.join(ROOT, "personalidades");
+var GROUP_CONTENT_DIR = path.join(ROOT, "content", "grupos");
+var GROUP_DIR = path.join(ROOT, "grupos");
 
 function escapeHtml(value) {
   return String(value)
@@ -44,8 +47,19 @@ function articleOutput(figure) {
   return path.join(ARTICLE_DIR, figure.id + ".html");
 }
 
+function groupSource(profile) {
+  var file = path.join(GROUP_CONTENT_DIR, profile.id + ".md");
+  return fs.existsSync(file) ? fs.readFileSync(file, "utf8") : null;
+}
+
+function groupOutput(profile) {
+  return path.join(GROUP_DIR, profile.id + ".html");
+}
+
 function renderInline(text) {
-  return escapeHtml(text).replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return escapeHtml(text)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
 function slug(text) {
@@ -58,7 +72,7 @@ function slug(text) {
 }
 
 // Subconjunto de Markdown: "## Título", parágrafos separados por linha em branco,
-// listas com "- " e *itálico*.
+// listas com "- ", *itálico* e [link](endereço).
 function renderMarkdown(source) {
   var lines = [];
   source
@@ -135,13 +149,20 @@ function renderGroup(profile) {
   figuresOf(profile.id).forEach(function (figure) {
     cards = cards.concat(renderCard(figure));
   });
+  var more = groupSource(profile)
+    ? [
+        '  <p class="figure-group-more"><a class="figure-read" href="grupos/' + profile.id + '.html">Ler sobre o grupo' +
+          '<span class="sr-only"> ' + escapeHtml(profile.name) + "</span></a></p>"
+      ]
+    : [];
   return [
     '<section class="figure-group" id="' + profile.id + '" aria-labelledby="' + profile.id + '-title">',
     '  <p class="profile-period">' + escapeHtml(profile.period) + "</p>",
     '  <h2 class="section-title" id="' + profile.id + '-title">' + escapeHtml(profile.name) + "</h2>",
-    '  <p class="figure-group-lead">' + escapeHtml(profile.synthesis) + "</p>",
-    '  <div class="figure-grid">'
+    '  <p class="figure-group-lead">' + escapeHtml(profile.synthesis) + "</p>"
   ]
+    .concat(more)
+    .concat(['  <div class="figure-grid">'])
     .concat(indent(cards, 4).split("\n"))
     .concat(["  </div>", '  <p class="figure-top"><a href="#topo">Voltar ao topo</a></p>', "</section>"]);
 }
@@ -287,6 +308,50 @@ function renderArticle(figure) {
   });
 }
 
+function renderGroupSources(profile) {
+  var sources = groups[profile.id].sources.map(function (source) {
+    return (
+      '<li>“<a href="' + escapeHtml(source.url) + '">' + escapeHtml(source.title) + "</a>”, Wikipédia em " +
+      escapeHtml(source.language) + "</li>"
+    );
+  });
+  return [
+    '<section class="figure-sources" aria-labelledby="fontes-title">',
+    '  <h2 class="section-title" id="fontes-title">Fontes</h2>',
+    "  <p>Texto escrito para este site, com palavras próprias, a partir destes verbetes, distribuídos sob a licença " +
+      '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.pt-br">CC BY-SA 4.0</a>, e dos textos sobre as personalidades do grupo:</p>',
+    "  <ul>"
+  ]
+    .concat(indent(sources, 4).split("\n"))
+    .concat(["  </ul>", "</section>"]);
+}
+
+function renderGroupPage(profile) {
+  var body = [
+    '<p class="figure-back"><a href="../personalidades.html#' + profile.id + '">← Personalidades do Iluminismo</a></p>',
+    '<header class="group-head">',
+    '  <p class="eyebrow">Correntes do Iluminismo</p>',
+    '  <h1 class="display" id="topo">' + escapeHtml(profile.name) + "</h1>",
+    '  <p class="figure-meta">' + escapeHtml(profile.period) + "</p>",
+    '  <p class="lead">' + escapeHtml(profile.synthesis) + "</p>",
+    "</header>",
+    '<article class="figure-article" aria-labelledby="topo">'
+  ]
+    .concat(indent(renderMarkdown(groupSource(profile)), 2).split("\n"))
+    .concat(["</article>"])
+    .concat(renderGroupSources(profile))
+    .concat(['<p class="figure-top"><a href="../personalidades.html#' + profile.id + '">Voltar às personalidades</a></p>']);
+
+  return renderShell({
+    base: "../",
+    title: profile.name + " · Afinidades com o Iluminismo",
+    description: profile.name + ": quem foram, o contexto, as ideias centrais e o legado. " + profile.synthesis,
+    screen: "figure",
+    mainClass: "page figure-article-page",
+    body: body
+  });
+}
+
 function pages() {
   var list = [{ file: OUTPUT, html: render() }];
   figures.forEach(function (figure) {
@@ -294,19 +359,28 @@ function pages() {
       list.push({ file: articleOutput(figure), html: renderArticle(figure) });
     }
   });
+  profiles.forEach(function (profile) {
+    if (groupSource(profile)) {
+      list.push({ file: groupOutput(profile), html: renderGroupPage(profile) });
+    }
+  });
   return list;
 }
 
 if (require.main === module) {
-  if (!fs.existsSync(ARTICLE_DIR)) {
-    fs.mkdirSync(ARTICLE_DIR);
-  }
+  [ARTICLE_DIR, GROUP_DIR].forEach(function (dir) {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+  });
   var written = pages();
   written.forEach(function (page) {
     fs.writeFileSync(page.file, page.html);
   });
+  var articles = figures.filter(articleSource).length;
   console.log(
-    "personalidades.html gerado com " + figures.length + " personalidades e " + (written.length - 1) + " texto(s) completo(s)."
+    "personalidades.html gerado com " + figures.length + " personalidades, " + articles + " texto(s) completo(s) e " +
+      (written.length - 1 - articles) + " página(s) de grupo."
   );
 }
 
@@ -315,5 +389,6 @@ module.exports = {
   output: OUTPUT,
   pages: pages,
   articleSource: articleSource,
+  groupSource: groupSource,
   renderMarkdown: renderMarkdown
 };

@@ -138,6 +138,70 @@ test("o Markdown dos textos vira seções, listas e itálico", function () {
   assert(html.indexOf("<li><em>A</em> (1670): x</li>") !== -1 && html.indexOf("<li>B</li>") !== -1, "lista mal convertida");
 });
 
+var groups = require("../js/data/groups.js");
+var GROUP_DIR = path.join(__dirname, "..", "content", "grupos");
+var GROUP_SECTIONS = [
+  "Quem são",
+  "Contexto",
+  "Ideias centrais",
+  "Como agiam",
+  "Divergências e relação com os outros grupos",
+  "As seis personalidades",
+  "Limites e críticas",
+  "Legado"
+];
+
+function withGroupText() {
+  return profiles.filter(function (profile) {
+    return build.groupSource(profile);
+  });
+}
+
+test("todo texto em content/grupos corresponde a um perfil com fontes", function () {
+  var ids = profiles.map(function (profile) {
+    return profile.id;
+  });
+  fs.readdirSync(GROUP_DIR).forEach(function (file) {
+    var id = file.replace(/\.md$/, "");
+    assert(/\.md$/.test(file) && ids.indexOf(id) !== -1, "arquivo inesperado: " + file);
+    var sources = groups[id] && groups[id].sources;
+    assert(Array.isArray(sources) && sources.length >= 1, id + " sem fontes em groups.js");
+    sources.forEach(function (source) {
+      assert(/^https:\/\/[a-z]{2}\.wikipedia\.org\/wiki\//.test(source.url), id + ": fonte inesperada " + source.url);
+      assert(source.title && source.language, id + ": fonte sem título ou idioma");
+    });
+  });
+});
+
+test("textos de grupo têm as oito seções, na ordem, e cabem em cinco páginas", function () {
+  withGroupText().forEach(function (profile) {
+    var source = build.groupSource(profile);
+    var headings = source.match(/^## .+$/gm).map(function (line) {
+      return line.slice(3);
+    });
+    assert(headings.join("|") === GROUP_SECTIONS.join("|"), profile.id + " tem seções " + headings.join(", "));
+    var count = words(source.replace(/^## .+$/gm, "").replace(/\]\([^)]*\)/g, "]"));
+    assert(count >= 2600 && count <= 3200, profile.id + " tem " + count + " palavras");
+  });
+});
+
+test("textos de grupo citam as seis personalidades com links válidos", function () {
+  withGroupText().forEach(function (profile) {
+    var source = build.groupSource(profile);
+    figures
+      .filter(function (figure) {
+        return figure.profile === profile.id;
+      })
+      .forEach(function (figure) {
+        assert(source.indexOf("](../personalidades/" + figure.id + ".html)") !== -1, profile.id + " sem link para " + figure.id);
+      });
+    (source.match(/\]\(([^)]+)\)/g) || []).forEach(function (link) {
+      var target = link.slice(2, -1);
+      assert(fs.existsSync(path.join(__dirname, "..", "grupos", target)), profile.id + ": link quebrado " + target);
+    });
+  });
+});
+
 test("páginas geradas estão atualizadas em relação aos dados", function () {
   build.pages().forEach(function (page) {
     assert(fs.existsSync(page.file), path.basename(page.file) + " não existe");

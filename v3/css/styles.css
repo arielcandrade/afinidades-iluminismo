@@ -1247,6 +1247,28 @@ a {
   }
 }
 
+.figure-group-more {
+  margin: 0.25rem 0 1.25rem;
+}
+
+.group-head {
+  padding-bottom: 1.5rem;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.group-head .figure-meta {
+  margin-top: 0.75rem;
+}
+
+.group-head .lead {
+  margin: 0.75rem 0 0;
+}
+
+.figure-article a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
 .figure-article h2 {
   margin: 2rem 0 0.5rem;
   font-family: var(--serif);
@@ -1324,7 +1346,8 @@ a {
   .figure-nav,
   .figure-top,
   .figure-back,
-  .figure-read {
+  .figure-read,
+  .figure-group-more {
     display: none !important;
   }
 

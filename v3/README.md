@@ -35,7 +35,8 @@ Cada reação carrega uma posição (−2 a +2) em dois ou três eixos; a mais p
 1. Edite `js/data/figures.js`. Os resumos são textos próprios escritos a partir dos verbetes; não copie frases da Wikipédia (CC BY-SA 4.0).
 2. Para um retrato novo, use imagem em domínio público ou CC0 do Wikimedia Commons, reduzida para 320 px de largura, em `img/personalidades/<id>.jpg`, e registre autor, licença e página de origem em `image`.
 3. Para um texto completo, crie `content/personalidades/<id>.md` e acrescente `teaser` (chamada de uma ou duas linhas para o cartão) e `sources` (verbetes consultados) à personalidade em `figures.js`. O script gera `personalidades/<id>.html`, e o cartão passa a mostrar a chamada e o botão "Ler o texto". O texto usa as seções `## Vida`, `## Ideias centrais`, `## Obras principais`, `## Por que pertence ao <grupo>` e `## Legado`, nessa ordem, com 800 a 1.100 palavras, para caber em duas páginas impressas. O Markdown aceito é simples: títulos `##`, parágrafos separados por linha em branco, listas com `- ` e `*itálico*`.
-4. Regenere as páginas e rode o teste, que também acusa HTML desatualizado:
+4. Para a página de um grupo, crie `content/grupos/<id do perfil>.md` e registre os verbetes consultados em `js/data/groups.js`. O script gera `grupos/<id>.html`, e a seção do grupo na página de personalidades ganha o botão "Ler sobre o grupo". O texto usa as seções `## Quem são`, `## Contexto`, `## Ideias centrais`, `## Como agiam`, `## Divergências e relação com os outros grupos`, `## As seis personalidades`, `## Limites e críticas` e `## Legado`, nessa ordem, com 2.600 a 3.200 palavras, cerca de cinco páginas A4. Em "As seis personalidades", cada nome leva ao texto da pessoa: `[David Hume](../personalidades/hume.html)`.
+5. Regenere as páginas e rode o teste, que também acusa HTML desatualizado:
 
 ```sh
 node scripts/build-personalidades.js
@@ -71,6 +72,8 @@ index.html
 personalidades.html     gerado por scripts/build-personalidades.js
 personalidades/         textos completos, um por personalidade (gerados)
 content/personalidades/ fonte dos textos completos, em Markdown
+grupos/                 páginas sobre cada corrente (geradas)
+content/grupos/         fonte das páginas de grupo, em Markdown
 css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato", personalidades
 img/personalidades/     30 retratos do Wikimedia Commons
 js/
@@ -83,6 +86,7 @@ js/
     profiles.js         cinco perfis com vetor nos nove eixos
     items.js            24 cenários, 4 em dois tempos, 9 tensões
     figures.js          trinta personalidades, seis por perfil
+    groups.js           fontes das páginas de grupo
 tests/                  scoring.test.js, storage.test.js, figures.test.js, scoring.test.html
 scripts/                simulate.js, generate-blueprint.js, build-personalidades.js
 docs/                   modelo-conceitual.md, matriz-de-conteudo.md, validacao.md
