@@ -47,6 +47,10 @@ node tests/figures.test.js
 
 `eixos.html` explica, para professores e participantes, como ler as nove réguas do resultado: como a posição é calculada, as faixas "no meio", "um pouco", "claramente" e "fortemente", os três sentidos de ficar no centro, uma seção por eixo (a pergunta, cada polo, o centro, as correntes e as leituras erradas a evitar) e como os eixos formam a afinidade com os perfis. A fonte é `content/eixos.md`, gerada pelo mesmo script; cada seção de eixo leva o nome do eixo em `js/data/axes.js` e os parágrafos `*Perto de “<polo>”.*`, o que o teste confere. Se mudar faixas, cargas ou vetores, revise o guia.
 
+## Mapa dos dez grupos
+
+`mapa.html` mostra como os cinco perfis do questionário se relacionam com as cinco correntes que ficaram de fora (Italiano, Americano, Ibérico, Moderado e Religioso, Fisiocracia): mapa de semelhança por componentes principais com os nove eixos, mapa de calor dos valores, plano "quem decide × como se decide", árvore de semelhança e tabela de afinidade com os cinco perfis. As posições das cinco correntes de fora, com uma justificativa por eixo, estão em `js/data/map-groups.js`; servem só para esta página e não entram no cálculo do resultado. O texto está em `content/mapa.md`, com marcadores `{{biplot}}`, `{{calor}}`, `{{plano}}`, `{{arvore}}`, `{{semelhanca}}` e `{{justificativas}}`; as figuras são SVG e tabelas calculadas a cada geração em `scripts/map-figures.js`, sem bibliotecas. Se um vetor mudar, gere de novo e releia os textos que comentam as figuras.
+
 ## Documentação
 
 - `docs/modelo-conceitual.md` — as cinco correntes, os nove eixos e a justificativa de cada célula da matriz.
@@ -79,6 +83,7 @@ content/personalidades/ fonte dos textos completos, em Markdown
 grupos/                 páginas sobre cada corrente (geradas)
 content/grupos/         fonte das páginas de grupo, em Markdown
 eixos.html              guia dos nove eixos (gerado de content/eixos.md)
+mapa.html               mapa dos dez grupos (gerado de content/mapa.md e js/data/map-groups.js)
 css/styles.css          sistema visual da raiz + faixas de intervalo, réguas, "novo fato", personalidades
 img/personalidades/     30 retratos do Wikimedia Commons
 js/
@@ -92,8 +97,9 @@ js/
     items.js            24 cenários, 4 em dois tempos, 9 tensões
     figures.js          trinta personalidades, seis por perfil
     groups.js           fontes das páginas de grupo
+    map-groups.js       cinco correntes fora do questionário, só para mapa.html
 tests/                  scoring.test.js, storage.test.js, figures.test.js, scoring.test.html
-scripts/                simulate.js, generate-blueprint.js, build-personalidades.js
+scripts/                simulate.js, generate-blueprint.js, build-personalidades.js, map-figures.js
 docs/                   modelo-conceitual.md, matriz-de-conteudo.md, validacao.md
 ```
 

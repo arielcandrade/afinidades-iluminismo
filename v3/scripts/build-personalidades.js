@@ -12,6 +12,9 @@ var path = require("path");
 var profiles = require("../js/data/profiles.js");
 var figures = require("../js/data/figures.js");
 var groups = require("../js/data/groups.js");
+var axes = require("../js/data/axes.js");
+var mapGroups = require("../js/data/map-groups.js");
+var mapFigures = require("./map-figures.js");
 
 var ROOT = path.join(__dirname, "..");
 var OUTPUT = path.join(ROOT, "personalidades.html");
@@ -21,6 +24,8 @@ var GROUP_CONTENT_DIR = path.join(ROOT, "content", "grupos");
 var GROUP_DIR = path.join(ROOT, "grupos");
 var GUIDE_SOURCE = path.join(ROOT, "content", "eixos.md");
 var GUIDE_OUTPUT = path.join(ROOT, "eixos.html");
+var MAP_SOURCE = path.join(ROOT, "content", "mapa.md");
+var MAP_OUTPUT = path.join(ROOT, "mapa.html");
 
 function escapeHtml(value) {
   return String(value)
@@ -202,7 +207,7 @@ function render() {
       '  <p class="eyebrow">Afinidades com o Iluminismo</p>',
       '  <h1 class="display" id="topo" tabindex="-1">Personalidades do Iluminismo</h1>',
       '  <p class="lead">Seis figuras de cada uma das cinco correntes do questionário: quem foram, o que defenderam e por que pertencem ao grupo.</p>',
-      '  <p class="figure-guide"><a href="eixos.html">Como ler os nove eixos do resultado</a></p>'
+      '  <p class="figure-guide"><a href="eixos.html">Como ler os nove eixos do resultado</a> · <a href="mapa.html">Como os dez grupos se relacionam</a></p>'
     ])
     .concat(indent(renderNav(), 2).split("\n"))
     .concat(["</section>"]);
@@ -402,8 +407,81 @@ function renderGuide() {
   });
 }
 
+function mapSource() {
+  return fs.readFileSync(MAP_SOURCE, "utf8");
+}
+
+function signedValue(value) {
+  return value > 0 ? "+" + value : value < 0 ? "−" + Math.abs(value) : "0";
+}
+
+function renderJustifications() {
+  return mapGroups.reduce(function (lines, group) {
+    var items = axes.map(function (axis) {
+      return (
+        "  <li><em>" + escapeHtml(axis.name) + ": " + signedValue(group.vector[axis.id]) + ".</em> " +
+        renderInline(group.justification[axis.id]) + "</li>"
+      );
+    });
+    return lines
+      .concat([
+        '<h3 id="' + group.id + '">' + escapeHtml(group.name) + "</h3>",
+        '<p class="figure-meta">' + escapeHtml(group.period) + " · " + escapeHtml(group.figures) + "</p>",
+        "<ul>"
+      ])
+      .concat(items)
+      .concat(["</ul>"]);
+  }, []);
+}
+
+// Blocos "{{nome}}" no Markdown recebem as figuras calculadas em scripts/map-figures.js.
+function renderMap() {
+  var built = mapFigures.figures();
+  built.justificativas = renderJustifications();
+  var lines = [];
+  mapSource()
+    .trim()
+    .split(/\n\s*\n/)
+    .forEach(function (block) {
+      var match = /^\{\{(\w+)\}\}$/.exec(block.trim());
+      if (match) {
+        if (!built[match[1]]) {
+          throw new Error("Figura desconhecida em content/mapa.md: " + match[1]);
+        }
+        lines = lines.concat(built[match[1]]);
+      } else {
+        lines = lines.concat(renderMarkdown(block));
+      }
+    });
+  var body = [
+    '<p class="figure-back"><a href="eixos.html">← Como ler os nove eixos</a></p>',
+    '<header class="group-head">',
+    '  <p class="eyebrow">Correntes do Iluminismo</p>',
+    '  <h1 class="display" id="topo">Como os dez grupos se relacionam</h1>',
+    '  <p class="lead">Os cinco grupos do questionário e os cinco que ficaram de fora, posicionados nos mesmos nove eixos.</p>',
+    "</header>",
+    '<article class="figure-article map-article" aria-labelledby="topo">'
+  ]
+    .concat(indent(lines, 2).split("\n"))
+    .concat(["</article>", '<p class="figure-top"><a href="#topo">Voltar ao topo</a></p>']);
+
+  return renderShell({
+    base: "",
+    brandSub: "mapa dos grupos",
+    title: "Como os dez grupos se relacionam · Afinidades com o Iluminismo",
+    description: "Mapa de semelhança, mapa de calor, plano e árvore dos dez grupos do Iluminismo levantados para o questionário, nos nove eixos.",
+    screen: "figure",
+    mainClass: "page figure-article-page page-map",
+    body: body
+  });
+}
+
 function pages() {
-  var list = [{ file: OUTPUT, html: render() }, { file: GUIDE_OUTPUT, html: renderGuide() }];
+  var list = [
+    { file: OUTPUT, html: render() },
+    { file: GUIDE_OUTPUT, html: renderGuide() },
+    { file: MAP_OUTPUT, html: renderMap() }
+  ];
   figures.forEach(function (figure) {
     if (articleSource(figure)) {
       list.push({ file: articleOutput(figure), html: renderArticle(figure) });
@@ -430,7 +508,7 @@ if (require.main === module) {
   var articles = figures.filter(articleSource).length;
   console.log(
     "personalidades.html gerado com " + figures.length + " personalidades, " + articles + " texto(s) completo(s) e " +
-      (written.length - 2 - articles) + " página(s) de grupo; eixos.html gerado."
+      (written.length - 3 - articles) + " página(s) de grupo; eixos.html e mapa.html gerados."
   );
 }
 
@@ -441,5 +519,6 @@ module.exports = {
   articleSource: articleSource,
   groupSource: groupSource,
   guideSource: guideSource,
+  mapSource: mapSource,
   renderMarkdown: renderMarkdown
 };

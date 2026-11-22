@@ -11,6 +11,8 @@
   --accent: #7a2e2e;
   --accent-soft: #a25252;
   --line: #1a1a1a;
+  --pole-negative: #2f5f8a;
+  --pole-positive: #b0652b;
 
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -34,6 +36,8 @@
     --accent: #c9706a;
     --accent-soft: #a85a55;
     --line: #ece6d9;
+    --pole-negative: #6f9fcb;
+    --pole-positive: #d9925a;
   }
 }
 
@@ -1276,6 +1280,221 @@ a {
 .figure-guide a {
   color: var(--accent);
   text-underline-offset: 0.2em;
+}
+
+/* ---------- mapa dos dez grupos ---------- */
+
+.figure-article h3 {
+  margin: 1.75rem 0 0.25rem;
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.page-map {
+  max-width: calc(58rem + 2 * var(--gutter));
+}
+
+.page-map > *,
+.map-article > :not(.map-figure) {
+  max-width: var(--measure);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-map > .map-article {
+  max-width: none;
+}
+
+.map-figure {
+  margin: 1.25rem 0 1.5rem;
+}
+
+.map-scroll {
+  overflow-x: auto;
+}
+
+.map-figure svg {
+  display: block;
+  width: 100%;
+  min-width: 34rem;
+  max-width: 50rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.map-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.map-legend {
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+}
+
+.map-key {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: 0 0.3rem 0 0.75rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  vertical-align: -0.05rem;
+}
+
+.map-key:first-child {
+  margin-left: 0;
+}
+
+.map-key-chosen {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.map-point-chosen {
+  fill: var(--accent);
+}
+
+.map-point-other {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.map-label {
+  font-family: var(--sans);
+  font-size: 13px;
+  fill: var(--ink);
+}
+
+.map-label-chosen {
+  fill: var(--accent);
+  font-weight: 500;
+}
+
+.map-axis-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  fill: var(--ink-soft);
+}
+
+.map-grid {
+  stroke: var(--ink-faint);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 4;
+}
+
+.map-arrow {
+  stroke: var(--ink-faint);
+  stroke-width: 1;
+}
+
+.map-leader {
+  stroke: var(--ink-soft);
+  stroke-width: 0.75;
+}
+
+.map-frame {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 0.75;
+}
+
+.map-tree {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.25;
+}
+
+.heat-table,
+.sim-table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.heat-table th,
+.heat-table td,
+.sim-table th,
+.sim-table td {
+  padding: 0.35rem 0.3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 40%, transparent);
+  text-align: center;
+}
+
+.heat-table thead th,
+.sim-table thead th {
+  vertical-align: bottom;
+  font-weight: 500;
+}
+
+.heat-table tbody th,
+.sim-table tbody th {
+  text-align: left;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.heat-table tr > :first-child,
+.sim-table tr > :first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--paper);
+}
+
+.heat-chosen th,
+.sim-table thead th + th {
+  color: var(--accent);
+}
+
+.heat-axis {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.heat-poles {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.heat-poles span {
+  display: block;
+}
+
+.heat-note {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.heat-neg-2 {
+  background: color-mix(in srgb, var(--pole-negative) 65%, transparent);
+}
+
+.heat-neg-1 {
+  background: color-mix(in srgb, var(--pole-negative) 28%, transparent);
+}
+
+.heat-pos-1 {
+  background: color-mix(in srgb, var(--pole-positive) 28%, transparent);
+}
+
+.heat-pos-2 {
+  background: color-mix(in srgb, var(--pole-positive) 65%, transparent);
+}
+
+.sim-best {
+  font-weight: 500;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .guide-nav ol {
