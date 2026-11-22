@@ -1167,9 +1167,14 @@
       ideas.appendChild(element("li", "", idea));
     });
     body.appendChild(ideas);
+    var links = element("p", "profile-links");
+    var group = element("a", "profile-more", "Ler sobre o grupo");
+    group.href = "grupos/" + profile.id + ".html";
+    links.appendChild(group);
     var more = element("a", "profile-more", "Conhecer as personalidades deste grupo");
     more.href = "personalidades.html#" + profile.id;
-    body.appendChild(more);
+    links.appendChild(more);
+    body.appendChild(links);
     card.appendChild(body);
     return card;
   }

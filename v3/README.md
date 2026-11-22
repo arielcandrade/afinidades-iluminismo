@@ -20,7 +20,7 @@ Acesse `http://localhost:8000`. Para publicação, basta servir a pasta em qualq
 2. **24 situações**, uma por tela — situação curta e cinco reações. A pessoa marca a **mais próxima** e a **mais distante**. Cada reação nomeia um custo; não há alternativa obviamente correta.
 3. **4 situações em dois tempos** — depois da primeira escolha, aparece um **novo fato** e a pessoa decide de novo entre cinco reações reformuladas.
 4. **9 tensões**, três por tela — duas posições e uma escala de cinco pontos.
-5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis, cada um com link para as personalidades do grupo; "Como ler"; botões Imprimir, Copiar respostas (JSON) e Refazer, que pede confirmação antes de apagar.
+5. **Resultado** — frase de abertura com o perfil principal e o intervalo ("índice 74, entre 49 e 80"); cinco barras com faixa de 80 %; réguas dos nove eixos com a posição da pessoa e a do perfil principal; leituras "Onde você se parece e onde se afasta", "A tensão que você carrega" e "Convicção"; cartões dos cinco perfis, cada um com links para a página do grupo e para as suas personalidades; "Como ler"; botões Imprimir, Copiar respostas (JSON) e Refazer, que pede confirmação antes de apagar.
 
 Duração prevista: cerca de 25 minutos. Ordem de situações e reações sorteada a cada sessão.
 

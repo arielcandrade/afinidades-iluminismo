@@ -1015,9 +1015,14 @@ a {
 
 /* ---------- personalidades ---------- */
 
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1rem 0 0;
+}
+
 .profile-more {
-  display: inline-block;
-  margin-top: 1rem;
   font-size: 0.9rem;
   color: var(--accent);
   text-underline-offset: 0.2em;
@@ -1342,7 +1347,7 @@ a {
   .link-button,
   .colophon,
   .profile-toggle,
-  .profile-more,
+  .profile-links,
   .figure-nav,
   .figure-top,
   .figure-back,
